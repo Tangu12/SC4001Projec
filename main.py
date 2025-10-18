@@ -5,7 +5,7 @@ from torch.utils.data import TensorDataset, DataLoader, random_split
 import neurokit2 as nk
 import matplotlib.pyplot as plt
 import time
-
+from models import CNN, RNN, LSTM, MixModel1, MixModel2
 
 torch.manual_seed(42)
 
@@ -72,129 +72,6 @@ elif dataset == "mitbih":
     train_dl = DataLoader(train_ds, batch_size=128, shuffle=True, drop_last=False)
     val_dl = DataLoader(val_ds, batch_size=256, shuffle=False, drop_last=False)
 
-# data_iter = iter(train_dl)
-#
-# xs = [i+1 for i in range(187)]
-#
-#
-# # Get the first batch
-# x_batch, y_batch = next(data_iter)
-# # print(x_batch[0].shape, y_batch.shape)
-# # print(x_batch[0].numpy().shape)
-# print(x_batch[14].numpy()[0])
-#
-#
-# plt.plot(xs,x_batch[110].numpy()[0] )
-# plt.show()
-#
-# # cleaned = nk.ecg_clean(x_batch[100].numpy()[0], sampling_rate=125 )
-# #
-# # # 2. Detect R-peaks
-# # signals, info = nk.ecg_peaks(cleaned, sampling_rate=125)
-# #
-# # # 3. Compute P, Q, R, S, T peaks
-# # peaks = nk.ecg_findpeaks(cleaned, sampling_rate=125)
-# #
-# # # 4. Compute interval features (HR, RR, QT, PR)
-# # features = nk.ecg_intervalrelated(peaks, sampling_rate=125)
-# #
-# # print(features)
-
-
-
-class CNN(nn.Module):
-    def __init__(self, num_classes=2):
-        super().__init__()
-        self.net = nn.Sequential(
-            nn.Conv1d(1, 32, kernel_size=7, padding=3, stride=1), nn.BatchNorm1d(32), nn.ReLU(),
-            nn.Conv1d(32, 64, kernel_size=5, padding=2, stride=2), nn.BatchNorm1d(64), nn.ReLU(),  # 187 -> ~94
-            nn.Conv1d(64, 128, kernel_size=3, padding=1, stride=2), nn.BatchNorm1d(128), nn.ReLU(), # 94 -> ~47
-            nn.MaxPool1d(2, ceil_mode=True),  # -> (128,24)
-            nn.AdaptiveAvgPool1d(1)  # -> (B, 128, 1)
-        )
-        self.fc = nn.Linear(128, num_classes)
-    def forward(self, x):
-        x = self.net(x).squeeze(-1)  # (B,128,1)->(B,128)
-        return self.fc(x)
-
-class RNN(nn.Module):
-    def __init__(self, num_classes=2, final = False):
-        super().__init__()
-        self.rnn1 = nn.RNN(input_size=1, hidden_size=4, num_layers=1, batch_first=True)
-        # self.rnn2 = nn.RNN(input_size=4, hidden_size=16, num_layers=1, batch_first=True)
-        self.fc = nn.Linear(4, num_classes)
-        self.final = final
-    def forward(self, x):
-        x = x.permute(0, 2, 1)
-        x, _ = self.rnn1(x)
-        # x, _ = self.rnn2(x)
-        x = self.fc(x)
-        if self.final:
-            return x[:,-1,:]
-        return x
-
-class LSTM(nn.Module):
-    def __init__(self, num_classes=2, final = False):
-        super().__init__()
-        self.lstm1 = nn.LSTM(input_size=1, hidden_size=32, num_layers=1, batch_first=True)
-        self.lstm2 = nn.LSTM(input_size=32, hidden_size=64, num_layers=1, batch_first=True)
-        self.fc = nn.Linear(64, num_classes)
-        self.final = final
-    def forward(self, x):
-        x = x.permute(0, 2, 1)
-        x, _ = self.lstm1(x)
-        x, _ = self.lstm2(x)
-        x = self.fc(x)
-        if self.final:
-            return x[:,-1,:]
-        return x
-
-class MixModel1(nn.Module):
-    def __init__(self, num_classes=2, final = False):
-        super().__init__()
-        self.net = nn.Sequential(
-            nn.Conv1d(1, 32, kernel_size=7, padding=3, stride=1), nn.BatchNorm1d(32), nn.ReLU(),
-            nn.Conv1d(32, 64, kernel_size=5, padding=2, stride=2), nn.BatchNorm1d(64), nn.ReLU(),  # 187 -> ~94
-            nn.Conv1d(64, 128, kernel_size=3, padding=1, stride=2), nn.BatchNorm1d(128), nn.ReLU(), # 94 -> ~47
-            nn.MaxPool1d(2, ceil_mode=True),  # -> (128,24)
-        )
-        self.lstm1 = nn.LSTM(input_size=128, hidden_size=64, num_layers=1, batch_first=True)
-        self.lstm2 = nn.LSTM(input_size=64, hidden_size=32, num_layers=1, batch_first=True)
-        self.fc = nn.Linear(32, num_classes) #[RNN output, extra features]
-        self.final = final
-    def forward(self, x):
-        x = self.net(x)
-        x = x.permute(0, 2, 1)
-        x, _ = self.lstm1(x)
-        x, _ = self.lstm2(x)
-        x = self.fc(x)
-        if self.final:
-            return x[:,-1,:]
-        return x
-
-class MixModel2(nn.Module):
-    def __init__(self, num_classes=2, final=False):
-        super().__init__()
-        self.net = nn.Sequential(
-            nn.Conv1d(1, 32, kernel_size=7, padding=3, stride=1), nn.BatchNorm1d(32), nn.ReLU(),
-            nn.MaxPool1d(2, ceil_mode=True),  # -> (128,24)
-        )
-        self.lstm1 = nn.LSTM(input_size=32, hidden_size=64, num_layers=1, batch_first=True)
-        self.lstm2 = nn.LSTM(input_size=64, hidden_size=32, num_layers=1, batch_first=True)
-        self.fc = nn.Linear(32, num_classes)
-        self.final = final
-
-    def forward(self, x):
-        x = self.net(x)
-        x = x.permute(0, 2, 1)
-        x, _ = self.lstm1(x)
-        x, _ = self.lstm2(x)
-        x = self.fc(x)
-        if self.final:
-            return x[:, -1, :]
-        return x
-
-
 def test_model(model):
 
     test_starttime = time.time()
@@ -252,8 +129,8 @@ def test_model(model):
         model.load_state_dict(best_state)
 
 
-# model = CNN(num_classes= classes).to(device)
-# test_model(model)
+model = CNN(num_classes= classes).to(device)
+test_model(model)
 
 # model = RNN(num_classes=classes, final= True).to(device)
 # test_model(model)
@@ -266,3 +143,9 @@ def test_model(model):
 
 # model = MixModel2(num_classes=classes, final=True).to(device)
 # test_model(model)
+
+# Grid search for each model (CNN, RNN, Hybrid)
+
+# Testing metrics to find the best hyperparameter per model
+# (Loss, Accuracy, classification rate, multi-class AUC) against each set of hyperparameter
+# Confusion matrix
