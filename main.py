@@ -5,7 +5,7 @@ from torch.utils.data import TensorDataset, DataLoader, random_split
 import neurokit2 as nk
 import matplotlib.pyplot as plt
 import time
-from models import CNN, RNN, LSTM, MixModel1, MixModel2
+from models import CNN, RNN, LSTM, MixModel1
 
 torch.manual_seed(42)
 
@@ -128,7 +128,6 @@ def test_model(model):
     if best_state is not None:
         model.load_state_dict(best_state)
 
-
 model = CNN(num_classes= classes).to(device)
 test_model(model)
 
@@ -149,3 +148,8 @@ test_model(model)
 # Testing metrics to find the best hyperparameter per model
 # (Loss, Accuracy, classification rate, multi-class AUC) against each set of hyperparameter
 # Confusion matrix
+
+
+# TODO
+# Modify model so that it also takes in statistical features (to be combined with RNN output before FC)
+# Potential multi-scale model - split sequence into N sub-sequences ->
