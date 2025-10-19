@@ -6,7 +6,7 @@ def mask_padded(values, length):
 
 # Get the valid length for each sequence
 def get_valid_lengths(df, pad_value=0.0):
-    features = df.iloc[:, :-1].copy()
+    features = df.iloc[:, :-1]
     values = features.to_numpy()
 
     valid_lengths = []
@@ -22,10 +22,10 @@ def get_valid_lengths(df, pad_value=0.0):
 
 # At each time stamp, add random noise using error ~ N(0,sigma)
 def add_gaussian_noise(df, valid_lengths, sigma=0.01):
-    features = df.iloc[:, :-1].copy()
+    features = df.iloc[:, :-1]
     labels = df.iloc[:, -1]
 
-    noisy = features.to_numpy().copy()
+    noisy = features.to_numpy()
     for i, length in enumerate(valid_lengths):
         noise = np.random.normal(0, sigma, length)
         noisy[i, :length] += noise
@@ -36,10 +36,10 @@ def add_gaussian_noise(df, valid_lengths, sigma=0.01):
 
 # At each time stamp, have a probability of being replaced by min/max value of that sample
 def add_salt_pepper(df, valid_lengths, prob=0.01):
-    features = df.iloc[:, :-1].copy()
+    features = df.iloc[:, :-1]
     labels = df.iloc[:, -1]
 
-    noisy = features.to_numpy().copy()
+    noisy = features.to_numpy()
     for i, length in enumerate(valid_lengths):
         signal = features.iloc[i, :length].to_numpy()
         mask = np.random.rand(length) < prob
@@ -56,10 +56,10 @@ def add_salt_pepper(df, valid_lengths, prob=0.01):
 
 # Scale and shift the heartbeat signal vertically (per-sample)
 def add_amplitude_drift(df, valid_lengths, scale_range=(0.95, 1.05), shift_range=(-0.01, 0.01)):
-    features = df.iloc[:, :-1].copy()
+    features = df.iloc[:, :-1]
     labels = df.iloc[:, -1]
 
-    drifted = features.to_numpy().copy()
+    drifted = features.to_numpy()
     for i, length in enumerate(valid_lengths):
         scale = np.random.uniform(*scale_range)
         shift = np.random.uniform(*shift_range)
@@ -71,10 +71,10 @@ def add_amplitude_drift(df, valid_lengths, scale_range=(0.95, 1.05), shift_range
 
 # Shift the heartbeat signal horizontally (per-sample)
 def add_signal_shift(df, valid_lengths, shift_range=(0, 0.5)):
-    features = df.iloc[:, :-1].copy()
+    features = df.iloc[:, :-1]
     labels = df.iloc[:, -1]
 
-    shifted = features.to_numpy().copy()
+    shifted = features.to_numpy()
     for i, length in enumerate(valid_lengths):
         signal = features.iloc[i, :length].to_numpy()
         shift = np.random.uniform(*shift_range)
@@ -88,7 +88,7 @@ def add_signal_shift(df, valid_lengths, shift_range=(0, 0.5)):
 
 # Add min max and range to the dataset
 def add_min_max(df, valid_lengths):
-    features = df.iloc[:, :-1].copy()
+    features = df.iloc[:, :-1]
     labels = df.iloc[:, -1]
 
     mins, maxs, ranges = [], [], []
@@ -107,7 +107,7 @@ def add_min_max(df, valid_lengths):
 
 # Add mean and std to the dataset
 def add_mean_std(df, valid_lengths):
-    features = df.iloc[:, :-1].copy()
+    features = df.iloc[:, :-1]
     labels = df.iloc[:, -1]
 
     means, stds = [], []
