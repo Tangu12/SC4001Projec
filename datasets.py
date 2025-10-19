@@ -1,64 +1,130 @@
 import pandas as pd
 import numpy as np
 import torch
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
 from torch.utils.data import DataLoader, Dataset, TensorDataset, random_split
 
-def get_ptbdb_dataset(noise = []):
+from data_augmentation import *
+from enum import Enum
+from typing import Optional, List
+
+from sklearn.utils import shuffle
+
+class data_aug(Enum):
+    gaussian_noise = 1
+    salt_pepper = 2
+    amplitude_drift = 3
+    signal_shift = 4
+
+class data_eng(Enum):
+    min_max = 1
+    mean_std = 2
+
+def data_manipulation(df, d_aug = None, d_eng = None):
+    df = df.copy()
+
+    if d_aug is not None or d_eng is not None:
+
+        # Get the valid lengths of each input, used for both data augmentation and data engineering
+        _, valid_lens = get_valid_lengths(df)
+
+        # Only if d_aug is given
+        if d_aug is not None:
+
+            # Data augmentation (Currently applying every augmentation no exclusiveness)
+            if data_aug.gaussian_noise in d_aug:
+                df = add_gaussian_noise(df, valid_lens)
+
+            if data_aug.salt_pepper in d_eng:
+                df = add_salt_pepper(df, valid_lens)
+
+            if data_aug.amplitude_drift in d_eng:
+                df = add_amplitude_drift(df, valid_lens)
+
+            if data_aug.signal_shift in d_eng:
+                df = add_signal_shift(df, valid_lens)
+
+        # Only if d_eng is given
+        if d_eng is not None:
+
+            # Data engineering
+            if data_eng.min_max in d_eng:
+                df = add_min_max(df, valid_lens)
+
+            if data_eng.mean_std in d_eng:
+                df = add_mean_std(df, valid_lens)
+    return df
+
+def get_ptbdb_dataset(d_aug: Optional[List[data_aug]] = None, d_eng: Optional[List[data_eng]] = None):
     classes = 2
 
     df_normal = pd.read_csv("ECG_heartbeats/ptbdb/ptbdb_normal.csv", header=None)
     df_abnormal = pd.read_csv("ECG_heartbeats/ptbdb/ptbdb_abnormal.csv", header=None)
-    # print(df_normal.shape)
-    # print(df_abnormal.shape)
-    df = pd.concat([df_normal, df_abnormal], axis=0).sample(frac=1.0, random_state=42).reset_index(drop=True)
+    df = pd.concat([df_normal, df_abnormal], axis=0).sample(frac=1.0, random_state=42).reset_index(drop=True) # Combining df and shuffling
 
-    # I don't really und what is gg on here :P
-    X = df.iloc[:, :-1].values.astype(np.float32)  # selecting every column except the last column
-    y = df.iloc[:, -1].values.astype(np.int64)     # just selecting the last column
+    df = data_manipulation(df, d_aug, d_eng)
 
-    # Augmentation
-    # X = fn_aug(X)
-
-    # Standardize per-feature (helps training)
-    # m, s = X.mean(axis=0, keepdims=True), X.std(axis=0, keepdims=True) + 1e-8
-    # X = (X - m) / s
-
-    # Reshape to (N, C, L) for Conv1d: here C=1, L=187
-    X = X[:, None, :]  # (N, 1, 187)
-
-    X_t = torch.from_numpy(X)  # creates a CPU tensor that shares the same underlying memory as X
-    y_t = torch.from_numpy(y)
-
-    # Train/val split (80/20)
-    full_ds = TensorDataset(X_t, y_t)
-    n_total = len(full_ds)
+    n_total = len(df)
     n_train = int(0.8 * n_total)
-    n_val = n_total - n_train
-    train_ds, val_ds = random_split(full_ds, [n_train, n_val], generator=torch.Generator().manual_seed(42))
 
-    train_dl = DataLoader(train_ds, batch_size=128, shuffle=True, drop_last=False)
-    val_dl = DataLoader(val_ds, batch_size=256, shuffle=False, drop_last=False)
-    test_dl = 0
+    df_train = df.to_numpy()[:n_train].copy()
+    df_test = df.to_numpy()[n_train:].copy()
 
-    return train_dl, val_dl, test_dl, classes
+    # preprocess_pipeline = Pipeline([
+    #     ('scaler', StandardScaler()),
+    # ])
+    #
+    # x_train, y_train = preprocess_pipeline.fit_transform(df_train[:,:-1]), df_train[:,-1]
+    # x_test, y_test = preprocess_pipeline.transform(df_test[:,:-1]), df_test[:,-1]
 
-def get_mitbih_dataset(noise = []):
+    x_train, y_train = df_train[:,:-1].astype(np.float32),  df_train[:,-1].astype(np.int64)
+    x_test, y_test = df_test[:,:-1].astype(np.float32), df_test[:,-1].astype(np.int64)
+
+    # x_train = x_train[:, None, :]  # (N, 1, 187)
+    # x_test = x_test[:, None, :]
+
+    # x_train_tensor = torch.from_numpy(x_train).float()
+    # y_train_tensor = torch.from_numpy(y_train).long()
+    # x_test_tensor = torch.from_numpy(x_test).float()
+    # y_test_tensor = torch.from_numpy(y_test).long()
+    #
+    # train_ds = TensorDataset(x_train_tensor, y_train_tensor)
+    # test_ds = TensorDataset(x_test_tensor, y_test_tensor)
+
+    return classes, x_train, y_train, x_test, y_test
+
+def get_mitbih_dataset(d_aug: Optional[List[data_aug]] = None, d_eng: Optional[List[data_eng]] = None):
     classes = 5
 
     df_train = pd.read_csv("ECG_heartbeats/mitbih/mitbih_train.csv", header=None)
     df_test = pd.read_csv("ECG_heartbeats/mitbih/mitbih_test.csv", header=None)
 
-    train_x, train_y = df_train.iloc[:, :-1].values.astype(np.float32), df_train.iloc[:, -1].values.astype(np.int64)
-    test_x, test_y = df_test.iloc[:, :-1].values.astype(np.float32), df_test.iloc[:, -1].values.astype(np.int64)
+    df_train = data_manipulation(df_train, d_aug, d_eng)
+    df_test = data_manipulation(df_test, d_aug, d_eng)
 
-    train_x = train_x[:, None, :]
-    test_x = test_x[:, None, :]
+    df_train = df_train.to_numpy().copy()
+    df_test = df_test.to_numpy().copy()
 
-    train_ds = TensorDataset(torch.from_numpy(train_x), torch.from_numpy(train_y))
-    val_ds = TensorDataset(torch.from_numpy(test_x), torch.from_numpy(test_y))
+    # preprocess_pipeline = Pipeline([
+    #     ('scaler', StandardScaler()),
+    # ])
+    #
+    # x_train, y_train = preprocess_pipeline.fit_transform(df_train[:,:-1]), df_train[:,-1]
+    # x_test, y_test = preprocess_pipeline.transform(df_test[:,:-1]), df_test[:,-1]
 
-    train_dl = DataLoader(train_ds, batch_size=128, shuffle=True, drop_last=False)
-    val_dl = DataLoader(val_ds, batch_size=256, shuffle=False, drop_last=False)
-    test_dl = 0
+    x_train, y_train = df_train[:,:-1].astype(np.float32),  df_train[:,-1].astype(np.int64)
+    x_test, y_test = df_test[:,:-1].astype(np.float32), df_test[:,-1].astype(np.int64)
 
-    return train_dl, val_dl, test_dl, classes
+    # x_train = x_train[:, None, :]  # (N, 1, 187)
+    # x_test = x_test[:, None, :]
+
+    # x_train_tensor = torch.from_numpy(x_train).float()
+    # y_train_tensor = torch.from_numpy(y_train).long()
+    # x_test_tensor = torch.from_numpy(x_test).float()
+    # y_test_tensor = torch.from_numpy(y_test).long()
+    #
+    # train_ds = TensorDataset(x_train_tensor, y_train_tensor)
+    # test_ds = TensorDataset(x_test_tensor, y_test_tensor)
+
+    return classes, x_train, y_train, x_test, y_test
