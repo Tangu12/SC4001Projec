@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from scipy.stats import skew, kurtosis
 
 def mask_padded(values, length):
     return values[:length]
@@ -118,5 +119,33 @@ def add_mean_std(df, valid_lengths):
 
     features["mean"] = means
     features["std"] = stds
+
+    return pd.concat([features, labels], axis=1)
+
+# Add skewness
+def add_skewness(df, valid_lengths):
+    features = df.iloc[:, :-1]
+    labels = df.iloc[:, -1]
+
+    skewnesses = []
+    for i, length in enumerate(valid_lengths):
+        signal = features.iloc[i, :length].to_numpy()
+        skewnesses.append(skew(signal))
+
+    features["skewness"] = skewnesses
+
+    return pd.concat([features, labels], axis=1)
+
+# Add kurtosis
+def add_kurtosis(df, valid_lengths):
+    features = df.iloc[:, :-1]
+    labels = df.iloc[:, -1]
+
+    kurtosises = []
+    for i, length in enumerate(valid_lengths):
+        signal = features.iloc[i, :length].to_numpy()
+        kurtosises.append(kurtosis(signal))
+
+    features["kurtosis"] = kurtosises
 
     return pd.concat([features, labels], axis=1)

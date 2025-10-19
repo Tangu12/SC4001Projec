@@ -30,11 +30,15 @@ d_aug.append(data_aug.amplitude_drift)
 d_eng = []
 d_eng.append(data_eng.min_max)
 d_eng.append(data_eng.mean_std)
+d_eng.append(data_eng.skew)
+d_eng.append(data_eng.kurtosis)
 
 # Calculate the extra features
 count = {
     data_eng.min_max: 3,
     data_eng.mean_std: 2,
+    data_eng.skew: 1,
+    data_eng.kurtosis: 1,
 }
 extra_features = sum(count[i] for i in d_eng)
 
@@ -46,15 +50,26 @@ dataset_loader = {
 classes, x_train, y_train, x_test, y_test = dataset_loader[dataset](d_aug=d_aug, d_eng=d_eng) # Should be augmented and train/test split using 80/20
 
 models = []
-# models.append(CNN(num_classes=classes, h_cnn=[4, 16, 32], extra_features=extra_features).to(device)) # appending different models with different sizes
-models.append(CNN(num_classes=classes, h_cnn=[4, 2, 2], extra_features=extra_features).to(device))
-# models.append(CNN(num_classes=classes, h_cnn=[16, 16, 16], extra_features=extra_features).to(device))
+
+# CNN
+models.append(CNN(num_classes=classes, h_cnn=[16, 16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
+# models.append(CNN(num_classes=classes, h_cnn=[8, 8, 8], extra_features=extra_features, features_fc=[8, 8]).to(device)) # appending different models with different sizes
+# models.append(CNN(num_classes=classes, h_cnn=[16, 16, 16], extra_features=extra_features, features_fc=[4, 4]).to(device))
+
+# RNN
+models.append(RNN(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
+
+# LSTM
+models.append(LSTM(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
+
+# MixModel
+models.append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # Used for grid search
 best_metric = 0
 best_model_idx = None
 
-by_AUC = True
+by_AUC = False
 metric = "AUC score" if by_AUC else "accuracy"
 
 for i, model in enumerate(models):
@@ -69,7 +84,7 @@ for i, model in enumerate(models):
 
 best_model = models[best_model_idx] # Get the best model for retraining using train_ds and test_ds (based on accuracy)
 print(f"Best model is {best_model_idx+1}")
-# print(best_model)from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
+print(best_model)
 
 scaler = StandardScaler()
 scaled_x_train = scaler.fit_transform(x_train)
@@ -125,3 +140,42 @@ print("Classification Report:\n", report)
 # Modify model so that it also takes in statistical features (to be combined with RNN output before FC) -DONE
 # Potential multi-scale model - split sequence into N sub-sequences ->
 
+# Without data
+# Best val accuracy: 0.8089 | time_taken: 2.9021s
+# Best val accuracy: 0.7393 | time_taken: 2.3497s
+# Best val accuracy: 0.7650 | time_taken: 2.2872s
+# Best val accuracy: 0.7599 | time_taken: 2.2755s
+# Best val accuracy: 0.7839 | time_taken: 2.2706s
+# Training model 1, accuracy: 0.7714
+# Best val accuracy: 0.8811 | time_taken: 2.3971s
+# Best val accuracy: 0.8750 | time_taken: 2.3840s
+# Best val accuracy: 0.8711 | time_taken: 2.2609s
+# Best val accuracy: 0.8750 | time_taken: 2.4828s
+# Best val accuracy: 0.8776 | time_taken: 2.4916s
+# Training model 2, accuracy: 0.8760
+# Best val accuracy: 0.9012 | time_taken: 3.0777s
+# Best val accuracy: 0.9089 | time_taken: 3.0470s
+# Best val accuracy: 0.8956 | time_taken: 3.2068s
+# Best val accuracy: 0.8960 | time_taken: 3.0586s
+# Best val accuracy: 0.8930 | time_taken: 2.8497s
+# Training model 3, accuracy: 0.8990
+
+# With Data
+# Best val accuracy: 0.8424 | time_taken: 2.8331s
+# Best val accuracy: 0.8402 | time_taken: 2.2187s
+# Best val accuracy: 0.8252 | time_taken: 2.2843s
+# Best val accuracy: 0.8385 | time_taken: 2.1425s
+# Best val accuracy: 0.8449 | time_taken: 2.1098s
+# Training model 1, accuracy: 0.8382
+# Best val accuracy: 0.8785 | time_taken: 2.2905s
+# Best val accuracy: 0.8647 | time_taken: 2.3213s
+# Best val accuracy: 0.8630 | time_taken: 2.4602s
+# Best val accuracy: 0.8660 | time_taken: 2.3764s
+# Best val accuracy: 0.8707 | time_taken: 2.3557s
+# Training model 2, accuracy: 0.8686
+# Best val accuracy: 0.9047 | time_taken: 2.6552s
+# Best val accuracy: 0.8978 | time_taken: 2.7048s
+# Best val accuracy: 0.8896 | time_taken: 2.6717s
+# Best val accuracy: 0.8943 | time_taken: 2.7245s
+# Best val accuracy: 0.8960 | time_taken: 2.8226s
+# Training model 3, accuracy: 0.8965
