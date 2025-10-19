@@ -1,5 +1,6 @@
 import torch, torch.nn as nn
 from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 from torch.utils.data import TensorDataset, DataLoader
 import matplotlib.pyplot as plt
 from models import CNN, RNN, LSTM, MixModel1
@@ -46,25 +47,29 @@ classes, x_train, y_train, x_test, y_test = dataset_loader[dataset](d_aug=d_aug,
 
 models = []
 # models.append(CNN(num_classes=classes, h_cnn=[4, 16, 32], extra_features=extra_features).to(device)) # appending different models with different sizes
-models.append(CNN(num_classes=classes, h_cnn=[4, 4, 16], extra_features=extra_features).to(device))
+models.append(CNN(num_classes=classes, h_cnn=[4, 2, 2], extra_features=extra_features).to(device))
 # models.append(CNN(num_classes=classes, h_cnn=[16, 16, 16], extra_features=extra_features).to(device))
 
 # Used for grid search
-best_acc = 0
+best_metric = 0
 best_model_idx = None
+
+by_AUC = True
+metric = "AUC score" if by_AUC else "accuracy"
+
 for i, model in enumerate(models):
 
     model_1 = copy.deepcopy(model)
 
-    model_acc = kFold_validation(model_1, x_train, y_train, epochs = 10, fold = 5)
-    print(f"Training model {i+1}, Accuracy: {model_acc:.4f}")
-    if model_acc > best_acc:
-        best_acc = model_acc
+    model_metric = kFold_validation(model_1, x_train, y_train, epochs = 10, fold = 5, by_AUC=by_AUC)
+    print(f"Training model {i+1}, {metric}: {model_metric:.4f}")
+    if model_metric > best_metric:
+        best_metric = model_metric
         best_model_idx = i
 
-best_model = models[best_model_idx] # Get the best model for retraining using train_ds and test_ds
+best_model = models[best_model_idx] # Get the best model for retraining using train_ds and test_ds (based on accuracy)
 print(f"Best model is {best_model_idx+1}")
-print(best_model)
+# print(best_model)from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 
 scaler = StandardScaler()
 scaled_x_train = scaler.fit_transform(x_train)
@@ -81,30 +86,42 @@ test_loader = DataLoader(test_fold_ds, batch_size=128, shuffle=False)
 
 test_model(best_model, train_loader, test_loader, epochs=10, validation=False)
 
+# Classification rate/ Confusion matrix
+full_logits = []
+full_labels = []
+for x, y in test_loader:
+    best_model.eval()
+    with torch.no_grad():
+        x, y = x.to(device), y.to(device)
+        logits = best_model(x)
+        full_logits.append(logits.cpu())
+        full_labels.append(y.cpu())
 
-# model = CNN(num_classes= classes).to(device)
-# test_model(model)
+full_logits = torch.cat(full_logits, dim=0)
+full_labels = torch.cat(full_labels, dim=0)
+full_preds = torch.argmax(full_logits, dim=1)
 
-# model = RNN(num_classes=classes, final= True).to(device)
-# test_model(model)
+y_true = full_labels.numpy()
+y_pred = full_preds.numpy()
 
-# model = LSTM(num_classes=classes, final= True).to(device)
-# test_model(model)
+# Accuracy
+acc = accuracy_score(y_true, y_pred)
+print(f"Accuracy: {acc:.3f}")
 
-# model = MixModel1(num_classes=classes, final=True).to(device)
-# test_model(model)
+# Confusion Matrix
+cm = confusion_matrix(y_true, y_pred)
+print("Confusion Matrix:\n", cm)
 
-# model = MixModel2(num_classes=classes, final=True).to(device)
-# test_model(model)
+# Classification report (precision, recall, F1)
+report = classification_report(y_true, y_pred)
+print("Classification Report:\n", report)
 
-# Grid search for each model (CNN, RNN, Hybrid)
 
+# TODO
 # Testing metrics to find the best hyperparameter per model
 # (Loss, Accuracy, classification rate, multi-class AUC) against each set of hyperparameter
 # Confusion matrix
 
-
-# TODO
-# Modify model so that it also takes in statistical features (to be combined with RNN output before FC)
+# Modify model so that it also takes in statistical features (to be combined with RNN output before FC) -DONE
 # Potential multi-scale model - split sequence into N sub-sequences ->
 
