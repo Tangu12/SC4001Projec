@@ -20,6 +20,8 @@ class data_aug(Enum):
 class data_eng(Enum):
     min_max = 1
     mean_std = 2
+    skew = 3
+    kurtosis = 4
 
 def data_manipulation(df, d_aug = None, d_eng = None):
     df = df.copy()
@@ -54,6 +56,13 @@ def data_manipulation(df, d_aug = None, d_eng = None):
 
             if data_eng.mean_std in d_eng:
                 df = add_mean_std(df, valid_lens)
+
+            if data_eng.skew in d_eng:
+                df = add_skewness(df, valid_lens)
+
+            if data_eng.kurtosis in d_eng:
+                df = add_kurtosis(df, valid_lens)
+
     return df
 
 def get_ptbdb_dataset(d_aug: Optional[List[data_aug]] = None, d_eng: Optional[List[data_eng]] = None):
@@ -64,6 +73,8 @@ def get_ptbdb_dataset(d_aug: Optional[List[data_aug]] = None, d_eng: Optional[Li
     df = pd.concat([df_normal, df_abnormal], axis=0).sample(frac=1.0, random_state=42).reset_index(drop=True) # Combining df and shuffling
 
     df = data_manipulation(df, d_aug, d_eng)
+
+    print(df)
 
     n_total = len(df)
     n_train = int(0.8 * n_total)
