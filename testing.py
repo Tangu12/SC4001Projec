@@ -116,7 +116,7 @@ def test_model(model, train_dl, test_dl, epochs = 10, validation = False, by_AUC
         # print(f"Epoch {ep:02d} | {text}_loss: {test_loss:.4f} | {text}_acc: {test_acc:.4f} | time_taken: {time_taken:.4f}s")
 
     total_time_taken = sum(data_dict["time"])
-    print(f"Best {text} {metric}: {best_test_metric:.4f} | time_taken: {total_time_taken:.4f}s")
+    # print(f"Best {text} {metric}: {best_test_metric:.4f} | time_taken: {total_time_taken:.4f}s")
 
     # Restore best
     if best_state is not None:

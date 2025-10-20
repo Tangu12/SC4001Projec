@@ -1,0 +1,144 @@
+The dataset is ptbdb
+No data augmentation applied
+No data engineering applied
+CNN 1
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+CNN 1
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+CNN 1
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+RNN 1
+RNN(
+  (rnn1): RNN(1, 8, batch_first=True)
+  (rnn2): RNN(8, 8, batch_first=True)
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+RNN 1
+RNN(
+  (rnn1): RNN(1, 16, batch_first=True)
+  (rnn2): RNN(16, 16, batch_first=True)
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+RNN 1
+RNN(
+  (rnn1): RNN(1, 32, batch_first=True)
+  (rnn2): RNN(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+LSTM 1
+LSTM(
+  (lstm1): LSTM(1, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+LSTM 1
+LSTM(
+  (lstm1): LSTM(1, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+LSTM 1
+LSTM(
+  (lstm1): LSTM(1, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+MixModel1 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(8, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+MixModel1 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+MixModel1 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)

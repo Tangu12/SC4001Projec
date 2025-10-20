@@ -9,6 +9,10 @@ from datasets import data_eng, data_aug
 from testing import kFold_validation, test_model, set_seed
 from logger import log
 import copy
+import time
+
+time_start = time.time()
+
 
 torch.manual_seed(42)
 torch.cuda.manual_seed_all(42)
@@ -72,7 +76,7 @@ test_loader = DataLoader(test_fold_ds, batch_size=128, shuffle=False)
 
 test_model(CNN(), train_loader, test_loader, epochs=1, validation=False, list_data=True)
 
-seeds = [10] # Add more seed to test models on different seed for averaging
+seeds = [10, 20, 30, 40, 50] # Add more seed to test models on different seed for averaging
 
 '''
     Part 1: No augmentation and engineering
@@ -87,32 +91,32 @@ models = {
 
 # CNN
 models["CNN"].append(CNN(num_classes=classes, h_cnn=[8, 8, 8]).to(device))
-# models["CNN"].append(CNN(num_classes=classes, h_cnn=[16, 16, 16]).to(device))
-# models["CNN"].append(CNN(num_classes=classes, h_cnn=[32, 32, 32]).to(device))
+models["CNN"].append(CNN(num_classes=classes, h_cnn=[16, 16, 16]).to(device))
+models["CNN"].append(CNN(num_classes=classes, h_cnn=[32, 32, 32]).to(device))
 # models["CNN"].append(CNN(num_classes=classes, h_cnn=[16, 16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # RNN
 models["RNN"].append(RNN(num_classes=classes, h_rnn=[8, 8]).to(device))
-# models["RNN"].append(RNN(num_classes=classes, h_rnn=[16, 16]).to(device))
-# models["RNN"].append(RNN(num_classes=classes, h_rnn=[32, 32]).to(device))
+models["RNN"].append(RNN(num_classes=classes, h_rnn=[16, 16]).to(device))
+models["RNN"].append(RNN(num_classes=classes, h_rnn=[32, 32]).to(device))
 # models["RNN"].append(RNN(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # LSTM
 models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[8, 8]).to(device))
-# models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[16, 16]).to(device))
-# models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[32, 32]).to(device))
+models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[16, 16]).to(device))
+models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[32, 32]).to(device))
 # models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # MixModel
 models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[8, 8, 8] ,h_rnn=[8, 8]).to(device))
-# models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[32, 32, 32] ,h_rnn=[32, 32]).to(device))
-# models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16]).to(device))
+models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16]).to(device))
+models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[32, 32, 32] ,h_rnn=[32, 32]).to(device))
 # models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # Write down each model details into the file
 for key,value in models.items():
     for i, model in enumerate(value):
-        log.write([f"{key} 1", model], fileType="det")
+        log.write([f"{key} {i}", model], fileType="det")
 
 # Used for grid search
 best_metric = 0
@@ -223,32 +227,32 @@ models = {
 
 # CNN
 models["CNN"].append(CNN(num_classes=classes, h_cnn=[8, 8, 8]).to(device))
-# models["CNN"].append(CNN(num_classes=classes, h_cnn=[16, 16, 16]).to(device))
-# models["CNN"].append(CNN(num_classes=classes, h_cnn=[32, 32, 32]).to(device))
+models["CNN"].append(CNN(num_classes=classes, h_cnn=[16, 16, 16]).to(device))
+models["CNN"].append(CNN(num_classes=classes, h_cnn=[32, 32, 32]).to(device))
 # models["CNN"].append(CNN(num_classes=classes, h_cnn=[16, 16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # RNN
 models["RNN"].append(RNN(num_classes=classes, h_rnn=[8, 8]).to(device))
-# models["RNN"].append(RNN(num_classes=classes, h_rnn=[16, 16]).to(device))
-# models["RNN"].append(RNN(num_classes=classes, h_rnn=[32, 32]).to(device))
+models["RNN"].append(RNN(num_classes=classes, h_rnn=[16, 16]).to(device))
+models["RNN"].append(RNN(num_classes=classes, h_rnn=[32, 32]).to(device))
 # models["RNN"].append(RNN(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # LSTM
 models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[8, 8]).to(device))
-# models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[16, 16]).to(device))
-# models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[32, 32]).to(device))
+models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[16, 16]).to(device))
+models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[32, 32]).to(device))
 # models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # MixModel
 models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[8, 8, 8] ,h_rnn=[8, 8]).to(device))
-# models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[32, 32, 32] ,h_rnn=[32, 32]).to(device))
-# models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16]).to(device))
+models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16]).to(device))
+models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[32, 32, 32] ,h_rnn=[32, 32]).to(device))
 # models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # Write down each model details into the file
 for key,value in models.items():
     for i, model in enumerate(value):
-        log.write([f"{key} 1", model], fileType="det")
+        log.write([f"{key} {i}", model], fileType="det")
 
 # Used for grid search
 best_metric = 0
@@ -375,32 +379,32 @@ models = {
 
 # CNN
 models["CNN"].append(CNN(num_classes=classes, h_cnn=[8, 8, 8], extra_features=extra_features, features_fc=[8, 8]).to(device))
-# models["CNN"].append(CNN(num_classes=classes, h_cnn=[16, 16, 16], extra_features=extra_features, features_fc=[16, 16]).to(device))
-# models["CNN"].append(CNN(num_classes=classes, h_cnn=[32, 32, 32], extra_features=extra_features, features_fc=[32, 32]).to(device))
+models["CNN"].append(CNN(num_classes=classes, h_cnn=[16, 16, 16], extra_features=extra_features, features_fc=[16, 16]).to(device))
+models["CNN"].append(CNN(num_classes=classes, h_cnn=[32, 32, 32], extra_features=extra_features, features_fc=[32, 32]).to(device))
 # models["CNN"].append(CNN(num_classes=classes, h_cnn=[16, 16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # RNN
 models["RNN"].append(RNN(num_classes=classes, h_rnn=[8, 8], extra_features=extra_features, features_fc=[8, 8]).to(device))
-# models["RNN"].append(RNN(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[16, 16]).to(device))
-# models["RNN"].append(RNN(num_classes=classes, h_rnn=[32, 32], extra_features=extra_features, features_fc=[32, 32]).to(device))
+models["RNN"].append(RNN(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[16, 16]).to(device))
+models["RNN"].append(RNN(num_classes=classes, h_rnn=[32, 32], extra_features=extra_features, features_fc=[32, 32]).to(device))
 # models["RNN"].append(RNN(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # LSTM
 models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[8, 8], extra_features=extra_features, features_fc=[8, 8]).to(device))
-# models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[16, 16]).to(device))
-# models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[32, 32], extra_features=extra_features, features_fc=[32, 32]).to(device))
+models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[16, 16]).to(device))
+models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[32, 32], extra_features=extra_features, features_fc=[32, 32]).to(device))
 # models["LSTM"].append(LSTM(num_classes=classes, h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # MixModel
 models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[8, 8, 8] ,h_rnn=[8, 8], extra_features=extra_features, features_fc=[8, 8]).to(device))
-# models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[32, 32, 32] ,h_rnn=[32, 32], extra_features=extra_features, features_fc=[16, 16]).to(device))
-# models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
+models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16], extra_features=extra_features, features_fc=[16, 16]).to(device))
+models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[32, 32, 32] ,h_rnn=[32, 32], extra_features=extra_features, features_fc=[32, 32]).to(device))
 # models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[16, 16, 16] ,h_rnn=[16, 16], extra_features=extra_features, features_fc=[32, 32]).to(device))
 
 # Write down each model details into the file
 for key,value in models.items():
     for i, model in enumerate(value):
-        log.write([f"{key} 1", model], fileType="det")
+        log.write([f"{key} {i}", model], fileType="det")
 
 # Used for grid search
 best_metric = 0
@@ -417,7 +421,7 @@ for key,value in models.items():
 
         total_metric = 0
 
-        log.write([f"{key} {i}", model], fileType="raw")
+        log.write([f"{key} {i+1}", model], fileType="raw")
 
         l_acc, l_loss, l_auc, l_time_taken = [], [], [], []
         for seed in seeds: # Average over 5 runs
@@ -483,6 +487,10 @@ log.write([f"{best_model[0]} {best_model[1]+1}", "acc"] + data_dict["acc"], file
 log.write([f"", "loss"] + data_dict["loss"], fileType="comp")
 log.write([f"", "auc"] + data_dict["auc"], fileType="comp")
 log.write([f"", "time_taken"] + data_dict["time"], fileType="comp")
+
+time_end = time.time()
+
+print(f"Time taken: {((time_end - time_start)/3600)%60:.2f} hrs {((time_end - time_start)/60)%60:.2f} mins {(time_end - time_start)%60:.2f} seconds")
 
 #
 # # Classification rate/ Confusion matrix

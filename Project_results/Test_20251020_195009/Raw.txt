@@ -1,0 +1,939 @@
+The dataset is ptbdb
+No data augmentation applied
+No data engineering applied
+CNN 0
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+Training CNN model 1, accuracy: 0.9022, loss: 0.2771, auc: 0.9469, time_taken: 2.2235
+------------------------------
+Training CNN model 1, accuracy: 0.9022, loss: 0.2748, auc: 0.9469, time_taken: 2.1881
+------------------------------
+Training CNN model 1, accuracy: 0.9028, loss: 0.2703, auc: 0.9496, time_taken: 2.2010
+------------------------------
+Training CNN model 1, accuracy: 0.9010, loss: 0.2818, auc: 0.9435, time_taken: 2.2069
+------------------------------
+Training CNN model 1, accuracy: 0.8996, loss: 0.2858, auc: 0.9459, time_taken: 2.2106
+------------------------------
+CNN 1
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training CNN model 2, accuracy: 0.9186, loss: 0.2265, auc: 0.9628, time_taken: 2.6181
+------------------------------
+Training CNN model 2, accuracy: 0.9230, loss: 0.2279, auc: 0.9620, time_taken: 2.6148
+------------------------------
+Training CNN model 2, accuracy: 0.9234, loss: 0.2223, auc: 0.9638, time_taken: 2.6007
+------------------------------
+Training CNN model 2, accuracy: 0.9188, loss: 0.2271, auc: 0.9619, time_taken: 2.6085
+------------------------------
+Training CNN model 2, accuracy: 0.9206, loss: 0.2291, auc: 0.9612, time_taken: 2.6060
+------------------------------
+CNN 2
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training CNN model 3, accuracy: 0.9409, loss: 0.1831, auc: 0.9742, time_taken: 4.0239
+------------------------------
+Training CNN model 3, accuracy: 0.9428, loss: 0.1770, auc: 0.9758, time_taken: 3.9944
+------------------------------
+Training CNN model 3, accuracy: 0.9432, loss: 0.1758, auc: 0.9761, time_taken: 4.0447
+------------------------------
+Training CNN model 3, accuracy: 0.9341, loss: 0.1988, auc: 0.9716, time_taken: 4.0178
+------------------------------
+Training CNN model 3, accuracy: 0.9385, loss: 0.1927, auc: 0.9712, time_taken: 4.7392
+------------------------------
+RNN 0
+RNN(
+  (rnn1): RNN(1, 8, batch_first=True)
+  (rnn2): RNN(8, 8, batch_first=True)
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+Training RNN model 1, accuracy: 0.7195, loss: 0.5934, auc: 0.5078, time_taken: 17.4528
+------------------------------
+Training RNN model 1, accuracy: 0.7195, loss: 0.5934, auc: 0.4999, time_taken: 17.5419
+------------------------------
+Training RNN model 1, accuracy: 0.7195, loss: 0.5934, auc: 0.5001, time_taken: 17.4694
+------------------------------
+Training RNN model 1, accuracy: 0.7195, loss: 0.5933, auc: 0.5004, time_taken: 17.5704
+------------------------------
+Training RNN model 1, accuracy: 0.7195, loss: 0.5934, auc: 0.4840, time_taken: 17.5588
+------------------------------
+RNN 1
+RNN(
+  (rnn1): RNN(1, 16, batch_first=True)
+  (rnn2): RNN(16, 16, batch_first=True)
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training RNN model 2, accuracy: 0.7197, loss: 0.5937, auc: 0.5032, time_taken: 18.0959
+------------------------------
+Training RNN model 2, accuracy: 0.7196, loss: 0.5935, auc: 0.5030, time_taken: 17.9951
+------------------------------
+Training RNN model 2, accuracy: 0.7197, loss: 0.5933, auc: 0.5082, time_taken: 18.0677
+------------------------------
+Training RNN model 2, accuracy: 0.7197, loss: 0.5939, auc: 0.5105, time_taken: 18.1275
+------------------------------
+Training RNN model 2, accuracy: 0.7196, loss: 0.5934, auc: 0.4953, time_taken: 18.0074
+------------------------------
+RNN 2
+RNN(
+  (rnn1): RNN(1, 32, batch_first=True)
+  (rnn2): RNN(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training RNN model 3, accuracy: 0.7200, loss: 0.5939, auc: 0.5081, time_taken: 21.1267
+------------------------------
+Training RNN model 3, accuracy: 0.7200, loss: 0.5942, auc: 0.5009, time_taken: 21.0906
+------------------------------
+Training RNN model 3, accuracy: 0.7200, loss: 0.5939, auc: 0.5061, time_taken: 21.1489
+------------------------------
+Training RNN model 3, accuracy: 0.7200, loss: 0.5935, auc: 0.4956, time_taken: 21.1074
+------------------------------
+Training RNN model 3, accuracy: 0.7200, loss: 0.5940, auc: 0.5075, time_taken: 21.1708
+------------------------------
+LSTM 0
+LSTM(
+  (lstm1): LSTM(1, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+Training LSTM model 1, accuracy: 0.7197, loss: 0.6131, auc: 0.6463, time_taken: 8.2532
+------------------------------
+Training LSTM model 1, accuracy: 0.7197, loss: 0.6130, auc: 0.6160, time_taken: 8.2614
+------------------------------
+Training LSTM model 1, accuracy: 0.7197, loss: 0.6135, auc: 0.6284, time_taken: 8.2468
+------------------------------
+Training LSTM model 1, accuracy: 0.7196, loss: 0.6209, auc: 0.6204, time_taken: 8.2581
+------------------------------
+Training LSTM model 1, accuracy: 0.7197, loss: 0.6135, auc: 0.6310, time_taken: 8.2458
+------------------------------
+LSTM 1
+LSTM(
+  (lstm1): LSTM(1, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training LSTM model 2, accuracy: 0.7197, loss: 0.5931, auc: 0.5921, time_taken: 9.6769
+------------------------------
+Training LSTM model 2, accuracy: 0.7196, loss: 0.5933, auc: 0.6062, time_taken: 9.6616
+------------------------------
+Training LSTM model 2, accuracy: 0.7196, loss: 0.5933, auc: 0.6019, time_taken: 9.6686
+------------------------------
+Training LSTM model 2, accuracy: 0.7197, loss: 0.5939, auc: 0.5987, time_taken: 9.6520
+------------------------------
+Training LSTM model 2, accuracy: 0.7196, loss: 0.5931, auc: 0.6014, time_taken: 9.7452
+------------------------------
+LSTM 2
+LSTM(
+  (lstm1): LSTM(1, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training LSTM model 3, accuracy: 0.7200, loss: 0.5934, auc: 0.5900, time_taken: 14.0904
+------------------------------
+Training LSTM model 3, accuracy: 0.7199, loss: 0.5937, auc: 0.5924, time_taken: 13.6201
+------------------------------
+Training LSTM model 3, accuracy: 0.7199, loss: 0.5932, auc: 0.5945, time_taken: 13.8045
+------------------------------
+Training LSTM model 3, accuracy: 0.7201, loss: 0.5929, auc: 0.6019, time_taken: 13.8191
+------------------------------
+Training LSTM model 3, accuracy: 0.7200, loss: 0.5933, auc: 0.6093, time_taken: 13.7310
+------------------------------
+MixModel1 0
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(8, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+Training MixModel1 model 1, accuracy: 0.8944, loss: 0.2706, auc: 0.9417, time_taken: 3.9337
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8971, loss: 0.2633, auc: 0.9465, time_taken: 3.8407
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8920, loss: 0.2665, auc: 0.9444, time_taken: 3.8366
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8954, loss: 0.2707, auc: 0.9443, time_taken: 3.8508
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8888, loss: 0.2784, auc: 0.9415, time_taken: 3.8398
+------------------------------
+MixModel1 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training MixModel1 model 2, accuracy: 0.9575, loss: 0.1243, auc: 0.9844, time_taken: 6.7814
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9519, loss: 0.1396, auc: 0.9811, time_taken: 6.7522
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9583, loss: 0.1208, auc: 0.9831, time_taken: 6.7476
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9564, loss: 0.1242, auc: 0.9843, time_taken: 6.7384
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9557, loss: 0.1210, auc: 0.9839, time_taken: 6.7378
+------------------------------
+MixModel1 2
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training MixModel1 model 3, accuracy: 0.9452, loss: 0.1594, auc: 0.9732, time_taken: 4.5571
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9455, loss: 0.1591, auc: 0.9736, time_taken: 4.5021
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9408, loss: 0.1713, auc: 0.9696, time_taken: 4.4697
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9422, loss: 0.1635, auc: 0.9736, time_taken: 4.4870
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9400, loss: 0.1709, auc: 0.9726, time_taken: 4.4490
+------------------------------
+Best model is MixModel1 model 2
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Testing on train/test set
+[0.8217107523187908, 0.8306423909309516, 0.9144623840604603, 0.9388526279628994, 0.9422878735829612, 0.8941944349020955, 0.9649604946753693, 0.9666781174854002, 0.9604946753692889, 0.9694263139814496]
+[0.39977538968557674, 0.45044961647453363, 0.22278256787544506, 0.17298478403582027, 0.16038085678441957, 0.2536419602510897, 0.10352842250473514, 0.1058296190759686, 0.11792256994085269, 0.09572947295065887]
+[0.877125149531418, 0.9092553185094348, 0.9572890179317477, 0.9725863074305843, 0.9774206055797011, 0.9761540218691578, 0.9868580668818717, 0.9878559448882797, 0.9886713795362874, 0.9913707597698869]
+[0.8679311275482178, 1.0912017822265625, 0.8628158569335938, 0.8525197505950928, 0.8350815773010254, 0.8471198081970215, 0.8248369693756104, 0.8249716758728027, 0.8810498714447021, 0.8631796836853027]
+The dataset is ptbdb
+Data augment: [<data_aug.gaussian_noise: 1>, <data_aug.salt_pepper: 2>, <data_aug.signal_shift: 4>, <data_aug.amplitude_drift: 3>]
+No data engineering applied
+CNN 0
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+Training CNN model 1, accuracy: 0.8840, loss: 0.2988, auc: 0.9335, time_taken: 4.6709
+------------------------------
+Training CNN model 1, accuracy: 0.8829, loss: 0.2955, auc: 0.9347, time_taken: 4.5769
+------------------------------
+Training CNN model 1, accuracy: 0.8881, loss: 0.2914, auc: 0.9360, time_taken: 4.5420
+------------------------------
+Training CNN model 1, accuracy: 0.8852, loss: 0.2959, auc: 0.9338, time_taken: 4.5630
+------------------------------
+Training CNN model 1, accuracy: 0.8898, loss: 0.2828, auc: 0.9392, time_taken: 4.5425
+------------------------------
+CNN 1
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training CNN model 2, accuracy: 0.9067, loss: 0.2516, auc: 0.9511, time_taken: 5.4358
+------------------------------
+Training CNN model 2, accuracy: 0.9008, loss: 0.2622, auc: 0.9474, time_taken: 5.3597
+------------------------------
+Training CNN model 2, accuracy: 0.9094, loss: 0.2428, auc: 0.9553, time_taken: 5.3165
+------------------------------
+Training CNN model 2, accuracy: 0.9070, loss: 0.2551, auc: 0.9509, time_taken: 5.3344
+------------------------------
+Training CNN model 2, accuracy: 0.9041, loss: 0.2538, auc: 0.9499, time_taken: 5.3318
+------------------------------
+CNN 2
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training CNN model 3, accuracy: 0.9143, loss: 0.2241, auc: 0.9616, time_taken: 7.2473
+------------------------------
+Training CNN model 3, accuracy: 0.9117, loss: 0.2317, auc: 0.9607, time_taken: 7.4420
+------------------------------
+Training CNN model 3, accuracy: 0.9152, loss: 0.2253, auc: 0.9618, time_taken: 8.2482
+------------------------------
+Training CNN model 3, accuracy: 0.9083, loss: 0.2412, auc: 0.9557, time_taken: 7.9907
+------------------------------
+Training CNN model 3, accuracy: 0.9176, loss: 0.2204, auc: 0.9625, time_taken: 8.0275
+------------------------------
+RNN 0
+RNN(
+  (rnn1): RNN(1, 8, batch_first=True)
+  (rnn2): RNN(8, 8, batch_first=True)
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+Training RNN model 1, accuracy: 0.7232, loss: 0.5902, auc: 0.5033, time_taken: 34.9250
+------------------------------
+Training RNN model 1, accuracy: 0.7231, loss: 0.5902, auc: 0.4963, time_taken: 34.8032
+------------------------------
+Training RNN model 1, accuracy: 0.7232, loss: 0.5901, auc: 0.4983, time_taken: 35.1728
+------------------------------
+Training RNN model 1, accuracy: 0.7232, loss: 0.5900, auc: 0.4918, time_taken: 35.6442
+------------------------------
+Training RNN model 1, accuracy: 0.7232, loss: 0.5902, auc: 0.5007, time_taken: 36.2801
+------------------------------
+RNN 1
+RNN(
+  (rnn1): RNN(1, 16, batch_first=True)
+  (rnn2): RNN(16, 16, batch_first=True)
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training RNN model 2, accuracy: 0.7243, loss: 0.5889, auc: 0.5262, time_taken: 37.9804
+------------------------------
+Training RNN model 2, accuracy: 0.7242, loss: 0.5891, auc: 0.5401, time_taken: 37.8804
+------------------------------
+Training RNN model 2, accuracy: 0.7241, loss: 0.5859, auc: 0.5422, time_taken: 37.4966
+------------------------------
+Training RNN model 2, accuracy: 0.7263, loss: 0.5864, auc: 0.5511, time_taken: 35.1524
+------------------------------
+Training RNN model 2, accuracy: 0.7240, loss: 0.5890, auc: 0.5332, time_taken: 30.3345
+------------------------------
+RNN 2
+RNN(
+  (rnn1): RNN(1, 32, batch_first=True)
+  (rnn2): RNN(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training RNN model 3, accuracy: 0.7239, loss: 0.5895, auc: 0.5303, time_taken: 37.4147
+------------------------------
+Training RNN model 3, accuracy: 0.7235, loss: 0.5896, auc: 0.5141, time_taken: 38.2892
+------------------------------
+Training RNN model 3, accuracy: 0.7238, loss: 0.5894, auc: 0.5595, time_taken: 38.0750
+------------------------------
+Training RNN model 3, accuracy: 0.7233, loss: 0.5890, auc: 0.5580, time_taken: 37.9963
+------------------------------
+Training RNN model 3, accuracy: 0.7232, loss: 0.5902, auc: 0.5306, time_taken: 37.9745
+------------------------------
+LSTM 0
+LSTM(
+  (lstm1): LSTM(1, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+Training LSTM model 1, accuracy: 0.7231, loss: 0.5901, auc: 0.6483, time_taken: 15.5172
+------------------------------
+Training LSTM model 1, accuracy: 0.7231, loss: 0.5900, auc: 0.6455, time_taken: 15.6057
+------------------------------
+Training LSTM model 1, accuracy: 0.7231, loss: 0.5901, auc: 0.6421, time_taken: 15.6192
+------------------------------
+Training LSTM model 1, accuracy: 0.7231, loss: 0.5900, auc: 0.6431, time_taken: 15.6493
+------------------------------
+Training LSTM model 1, accuracy: 0.7231, loss: 0.5900, auc: 0.6450, time_taken: 15.6320
+------------------------------
+LSTM 1
+LSTM(
+  (lstm1): LSTM(1, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training LSTM model 2, accuracy: 0.7231, loss: 0.5900, auc: 0.5925, time_taken: 18.4103
+------------------------------
+Training LSTM model 2, accuracy: 0.7232, loss: 0.5900, auc: 0.6018, time_taken: 18.5208
+------------------------------
+Training LSTM model 2, accuracy: 0.7231, loss: 0.5904, auc: 0.5976, time_taken: 18.4876
+------------------------------
+Training LSTM model 2, accuracy: 0.7231, loss: 0.5904, auc: 0.5898, time_taken: 18.4980
+------------------------------
+Training LSTM model 2, accuracy: 0.7231, loss: 0.5902, auc: 0.6033, time_taken: 18.4927
+------------------------------
+LSTM 2
+LSTM(
+  (lstm1): LSTM(1, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training LSTM model 3, accuracy: 0.7234, loss: 0.5896, auc: 0.5974, time_taken: 28.1087
+------------------------------
+Training LSTM model 3, accuracy: 0.7237, loss: 0.5895, auc: 0.5894, time_taken: 27.6835
+------------------------------
+Training LSTM model 3, accuracy: 0.7233, loss: 0.5897, auc: 0.5908, time_taken: 27.7005
+------------------------------
+Training LSTM model 3, accuracy: 0.7232, loss: 0.5914, auc: 0.5803, time_taken: 27.3586
+------------------------------
+Training LSTM model 3, accuracy: 0.7236, loss: 0.5897, auc: 0.6009, time_taken: 26.7532
+------------------------------
+MixModel1 0
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(8, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (fc): Linear(in_features=8, out_features=2, bias=True)
+)
+Training MixModel1 model 1, accuracy: 0.8868, loss: 0.2746, auc: 0.9409, time_taken: 6.9473
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8930, loss: 0.2669, auc: 0.9438, time_taken: 6.9004
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8819, loss: 0.2866, auc: 0.9366, time_taken: 6.9277
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8933, loss: 0.2669, auc: 0.9422, time_taken: 7.3634
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8915, loss: 0.2758, auc: 0.9411, time_taken: 7.5291
+------------------------------
+MixModel1 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training MixModel1 model 2, accuracy: 0.9403, loss: 0.1637, auc: 0.9789, time_taken: 13.4137
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9400, loss: 0.1602, auc: 0.9780, time_taken: 13.4444
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9408, loss: 0.1634, auc: 0.9766, time_taken: 13.4232
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9438, loss: 0.1585, auc: 0.9785, time_taken: 13.3747
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9389, loss: 0.1646, auc: 0.9769, time_taken: 13.3591
+------------------------------
+MixModel1 2
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training MixModel1 model 3, accuracy: 0.9244, loss: 0.1983, auc: 0.9669, time_taken: 8.8301
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9243, loss: 0.1990, auc: 0.9664, time_taken: 8.8049
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9210, loss: 0.1989, auc: 0.9686, time_taken: 7.9999
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9212, loss: 0.2119, auc: 0.9626, time_taken: 7.6259
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9232, loss: 0.1988, auc: 0.9667, time_taken: 7.6156
+------------------------------
+Best model is MixModel1 model 2
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Testing on train/test set
+[0.6440474145335853, 0.881635457825116, 0.9046555574643532, 0.8955505926816698, 0.9110118536333963, 0.9187424841092596, 0.9062016835595259, 0.9374677890396839, 0.9409036248067343, 0.9269884899501803]
+[0.5904996576249405, 0.29407485485015467, 0.24708658284777282, 0.2626450017716667, 0.22068760706743124, 0.2143304847735061, 0.23636206754641195, 0.169478416519668, 0.1607000510618052, 0.18429594204467178]
+[0.859826126614279, 0.9332755155961996, 0.9480976753563968, 0.9555910758475922, 0.9655996135563409, 0.960947277168282, 0.968083018859116, 0.9759940405275638, 0.9759321085835486, 0.9802911253639687]
+[1.573359727859497, 1.4842114448547363, 1.4940016269683838, 1.5250804424285889, 1.516049861907959, 1.5281305313110352, 1.4970159530639648, 1.5087215900421143, 1.5161993503570557, 1.6111910343170166]
+The dataset is ptbdb
+Data augment: [<data_aug.gaussian_noise: 1>, <data_aug.salt_pepper: 2>, <data_aug.signal_shift: 4>, <data_aug.amplitude_drift: 3>]
+Data engineering: [<data_eng.min_max: 1>, <data_eng.mean_std: 2>, <data_eng.skew: 3>, <data_eng.kurtosis: 4>]
+CNN 0
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=8, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=8, out_features=8, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training CNN model 1, accuracy: 0.8798, loss: 0.2956, auc: 0.9327, time_taken: 4.4506
+------------------------------
+Training CNN model 1, accuracy: 0.8825, loss: 0.2955, auc: 0.9333, time_taken: 4.4498
+------------------------------
+Training CNN model 1, accuracy: 0.8834, loss: 0.2922, auc: 0.9365, time_taken: 5.1041
+------------------------------
+Training CNN model 1, accuracy: 0.8839, loss: 0.2953, auc: 0.9365, time_taken: 5.2391
+------------------------------
+Training CNN model 1, accuracy: 0.8857, loss: 0.2876, auc: 0.9364, time_taken: 5.3385
+------------------------------
+CNN 1
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training CNN model 2, accuracy: 0.9148, loss: 0.2277, auc: 0.9594, time_taken: 5.9886
+------------------------------
+Training CNN model 2, accuracy: 0.9120, loss: 0.2294, auc: 0.9610, time_taken: 5.3289
+------------------------------
+Training CNN model 2, accuracy: 0.9141, loss: 0.2274, auc: 0.9609, time_taken: 5.7727
+------------------------------
+Training CNN model 2, accuracy: 0.9084, loss: 0.2400, auc: 0.9577, time_taken: 5.8227
+------------------------------
+Training CNN model 2, accuracy: 0.9115, loss: 0.2342, auc: 0.9588, time_taken: 5.7672
+------------------------------
+CNN 2
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=64, out_features=2, bias=True)
+)
+Training CNN model 3, accuracy: 0.9201, loss: 0.2148, auc: 0.9652, time_taken: 8.2205
+------------------------------
+Training CNN model 3, accuracy: 0.9198, loss: 0.2186, auc: 0.9645, time_taken: 8.2954
+------------------------------
+Training CNN model 3, accuracy: 0.9205, loss: 0.2182, auc: 0.9626, time_taken: 8.0887
+------------------------------
+Training CNN model 3, accuracy: 0.9206, loss: 0.2253, auc: 0.9603, time_taken: 8.2356
+------------------------------
+Training CNN model 3, accuracy: 0.9171, loss: 0.2218, auc: 0.9637, time_taken: 8.2474
+------------------------------
+RNN 0
+RNN(
+  (rnn1): RNN(1, 8, batch_first=True)
+  (rnn2): RNN(8, 8, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=8, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=8, out_features=8, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training RNN model 1, accuracy: 0.7232, loss: 0.5371, auc: 0.6835, time_taken: 33.4703
+------------------------------
+Training RNN model 1, accuracy: 0.7232, loss: 0.5343, auc: 0.6840, time_taken: 33.7326
+------------------------------
+Training RNN model 1, accuracy: 0.7232, loss: 0.5337, auc: 0.6843, time_taken: 35.6077
+------------------------------
+Training RNN model 1, accuracy: 0.7232, loss: 0.5363, auc: 0.6837, time_taken: 35.4689
+------------------------------
+Training RNN model 1, accuracy: 0.7232, loss: 0.5318, auc: 0.6872, time_taken: 34.4390
+------------------------------
+RNN 1
+RNN(
+  (rnn1): RNN(1, 16, batch_first=True)
+  (rnn2): RNN(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training RNN model 2, accuracy: 0.7238, loss: 0.5188, auc: 0.7052, time_taken: 37.5247
+------------------------------
+Training RNN model 2, accuracy: 0.7239, loss: 0.5203, auc: 0.7018, time_taken: 35.9665
+------------------------------
+Training RNN model 2, accuracy: 0.7243, loss: 0.5185, auc: 0.7055, time_taken: 36.2666
+------------------------------
+Training RNN model 2, accuracy: 0.7239, loss: 0.5204, auc: 0.7032, time_taken: 36.2407
+------------------------------
+Training RNN model 2, accuracy: 0.7238, loss: 0.5216, auc: 0.6985, time_taken: 39.7767
+------------------------------
+RNN 2
+RNN(
+  (rnn1): RNN(1, 32, batch_first=True)
+  (rnn2): RNN(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=64, out_features=2, bias=True)
+)
+Training RNN model 3, accuracy: 0.7314, loss: 0.5009, auc: 0.7469, time_taken: 45.6113
+------------------------------
+Training RNN model 3, accuracy: 0.7315, loss: 0.4999, auc: 0.7470, time_taken: 44.6982
+------------------------------
+Training RNN model 3, accuracy: 0.7307, loss: 0.5000, auc: 0.7500, time_taken: 44.4807
+------------------------------
+Training RNN model 3, accuracy: 0.7275, loss: 0.5017, auc: 0.7451, time_taken: 48.0562
+------------------------------
+Training RNN model 3, accuracy: 0.7286, loss: 0.5016, auc: 0.7460, time_taken: 47.0174
+------------------------------
+LSTM 0
+LSTM(
+  (lstm1): LSTM(1, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=8, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=8, out_features=8, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training LSTM model 1, accuracy: 0.7298, loss: 0.5151, auc: 0.7150, time_taken: 18.7017
+------------------------------
+Training LSTM model 1, accuracy: 0.7324, loss: 0.5119, auc: 0.7225, time_taken: 18.8940
+------------------------------
+Training LSTM model 1, accuracy: 0.7352, loss: 0.5092, auc: 0.7288, time_taken: 19.0318
+------------------------------
+Training LSTM model 1, accuracy: 0.7335, loss: 0.5088, auc: 0.7287, time_taken: 19.0531
+------------------------------
+Training LSTM model 1, accuracy: 0.7310, loss: 0.5122, auc: 0.7211, time_taken: 19.0216
+------------------------------
+LSTM 1
+LSTM(
+  (lstm1): LSTM(1, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training LSTM model 2, accuracy: 0.7296, loss: 0.5092, auc: 0.7339, time_taken: 20.8866
+------------------------------
+Training LSTM model 2, accuracy: 0.7344, loss: 0.5028, auc: 0.7453, time_taken: 21.1725
+------------------------------
+Training LSTM model 2, accuracy: 0.7336, loss: 0.5058, auc: 0.7442, time_taken: 21.0189
+------------------------------
+Training LSTM model 2, accuracy: 0.7363, loss: 0.5058, auc: 0.7389, time_taken: 21.2988
+------------------------------
+Training LSTM model 2, accuracy: 0.7347, loss: 0.5059, auc: 0.7411, time_taken: 21.1810
+------------------------------
+LSTM 2
+LSTM(
+  (lstm1): LSTM(1, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=64, out_features=2, bias=True)
+)
+Training LSTM model 3, accuracy: 0.7283, loss: 0.5047, auc: 0.7432, time_taken: 36.8987
+------------------------------
+Training LSTM model 3, accuracy: 0.7271, loss: 0.5059, auc: 0.7413, time_taken: 37.8242
+------------------------------
+Training LSTM model 3, accuracy: 0.7275, loss: 0.5025, auc: 0.7482, time_taken: 38.8216
+------------------------------
+Training LSTM model 3, accuracy: 0.7375, loss: 0.5043, auc: 0.7448, time_taken: 38.3653
+------------------------------
+Training LSTM model 3, accuracy: 0.7399, loss: 0.5013, auc: 0.7489, time_taken: 34.5946
+------------------------------
+MixModel1 0
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(8, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=8, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=8, out_features=8, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=16, out_features=2, bias=True)
+)
+Training MixModel1 model 1, accuracy: 0.8935, loss: 0.2695, auc: 0.9405, time_taken: 8.8010
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8928, loss: 0.2734, auc: 0.9376, time_taken: 8.6909
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8933, loss: 0.2720, auc: 0.9392, time_taken: 8.7194
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8931, loss: 0.2751, auc: 0.9378, time_taken: 8.5734
+------------------------------
+Training MixModel1 model 1, accuracy: 0.8865, loss: 0.2847, auc: 0.9348, time_taken: 8.7167
+------------------------------
+MixModel1 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=48, out_features=2, bias=True)
+)
+Training MixModel1 model 2, accuracy: 0.9422, loss: 0.1501, auc: 0.9805, time_taken: 14.8385
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9376, loss: 0.1688, auc: 0.9744, time_taken: 15.1416
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9415, loss: 0.1592, auc: 0.9781, time_taken: 14.9347
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9374, loss: 0.1722, auc: 0.9755, time_taken: 15.1932
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9423, loss: 0.1536, auc: 0.9797, time_taken: 15.3258
+------------------------------
+MixModel1 2
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=48, out_features=2, bias=True)
+)
+Training MixModel1 model 3, accuracy: 0.9202, loss: 0.2068, auc: 0.9655, time_taken: 10.3110
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9199, loss: 0.2099, auc: 0.9640, time_taken: 10.3073
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9268, loss: 0.1896, auc: 0.9693, time_taken: 10.6313
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9217, loss: 0.2049, auc: 0.9656, time_taken: 10.6675
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9238, loss: 0.1991, auc: 0.9670, time_taken: 10.7737
+------------------------------
+Best model is MixModel1 model 2
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=48, out_features=2, bias=True)
+)
+Testing on train/test set
+[0.8067342381034187, 0.8795739563648858, 0.8989864284487201, 0.9115272289984538, 0.8702971997938499, 0.8687510736986772, 0.9330012025425185, 0.938154956193094, 0.9470881291874248, 0.9400446658649717]
+[0.40116401235071414, 0.29222016310163473, 0.2507480114078915, 0.22266669083739285, 0.3054984877341352, 0.33213834603040454, 0.17813504068860891, 0.1642575213803067, 0.1548383135685825, 0.15716820082863547]
+[0.8858490687157168, 0.9373461731602565, 0.9520894772885569, 0.9576923851282799, 0.9541273227396883, 0.962293950452694, 0.9727579687956375, 0.9772608369230518, 0.9778110026730672, 0.980299806048701]
+[2.366710901260376, 2.42141056060791, 2.412416696548462, 2.3723926544189453, 2.3326804637908936, 2.5221288204193115, 2.377800226211548, 2.3455257415771484, 2.398130416870117, 2.8824210166931152]
