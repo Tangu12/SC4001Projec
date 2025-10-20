@@ -130,7 +130,7 @@ class MixModel1(nn.Module):
         x_timestamp = x_timestamp[:, -1, :]
 
         if self.extra_features > 0: # Final merging layer
-            x_features = self.net1(x_features).squeeze(1) # FC for extra features
+            x_features = self.net1(x_features).squeeze(1)
             x = torch.cat((x_timestamp, x_features), dim=1)
         else:
             x = x_timestamp
