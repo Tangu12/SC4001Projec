@@ -1,8 +1,0 @@
-The dataset is ptbdb
-No data augmentation applied
-No data engineering applied
-Model,Metric,Run 1,Run 2,Run 3,Run 4,Run 5,Avg
-CNN 0,acc,0.9001794201012485,0.9001794201012485
-,loss,0.2688860826771929,0.2688860826771929
-,auc,0.9495314030599179,0.9495314030599179
-,time_taken,2.681616449356079,2.681616449356079
