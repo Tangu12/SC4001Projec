@@ -38,13 +38,13 @@ def data_manipulation(df, d_aug = None, d_eng = None):
             if data_aug.gaussian_noise in d_aug:
                 df = add_gaussian_noise(df, valid_lens)
 
-            if data_aug.salt_pepper in d_eng:
+            if data_aug.salt_pepper in d_aug:
                 df = add_salt_pepper(df, valid_lens)
 
-            if data_aug.amplitude_drift in d_eng:
+            if data_aug.amplitude_drift in d_aug:
                 df = add_amplitude_drift(df, valid_lens)
 
-            if data_aug.signal_shift in d_eng:
+            if data_aug.signal_shift in d_aug:
                 df = add_signal_shift(df, valid_lens)
 
         # Only if d_eng is given
@@ -72,9 +72,12 @@ def get_ptbdb_dataset(d_aug: Optional[List[data_aug]] = None, d_eng: Optional[Li
     df_abnormal = pd.read_csv("ECG_heartbeats/ptbdb/ptbdb_abnormal.csv", header=None)
     df = pd.concat([df_normal, df_abnormal], axis=0).sample(frac=1.0, random_state=42).reset_index(drop=True) # Combining df and shuffling
 
-    df = data_manipulation(df, d_aug, d_eng)
+    df_1 = data_manipulation(df, d_eng = d_eng) # Original data append with data engineering
+    if d_aug is not None:
+        df_2 = data_manipulation(df, d_aug, d_eng) # Added noise and append with data engineering
+        df = pd.concat([df_1, df_2], axis=0).sample(frac=1.0, random_state=42).reset_index(drop=True)
 
-    print(df)
+    # print(df)
 
     n_total = len(df)
     n_train = int(0.8 * n_total)
@@ -111,8 +114,12 @@ def get_mitbih_dataset(d_aug: Optional[List[data_aug]] = None, d_eng: Optional[L
     df_train = pd.read_csv("ECG_heartbeats/mitbih/mitbih_train.csv", header=None)
     df_test = pd.read_csv("ECG_heartbeats/mitbih/mitbih_test.csv", header=None)
 
-    df_train = data_manipulation(df_train, d_aug, d_eng)
-    df_test = data_manipulation(df_test, d_aug, d_eng)
+    df_train_1 = data_manipulation(df_train, d_eng)
+    df_test = data_manipulation(df_test, d_eng)
+
+    if d_aug is not None:
+        df_train_2 = data_manipulation(df_train, d_aug, d_eng)
+        df_train = pd.concat([df_train_1, df_train_2], axis=0).sample(frac=1.0, random_state=42).reset_index(drop=True)
 
     df_train = df_train.to_numpy().copy()
     df_test = df_test.to_numpy().copy()

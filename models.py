@@ -11,19 +11,27 @@ class CNN(nn.Module):
             nn.MaxPool1d(2, ceil_mode=True),
             nn.AdaptiveAvgPool1d(1)
         )
-        self.net1 = nn.Sequential(
-            nn.Linear(extra_features, features_fc[0]), nn.ReLU(),
-            nn.Linear(features_fc[0], features_fc[1]), nn.ReLU(),
-        )
-        self.fc = nn.Linear(h_cnn[2] + features_fc[1], num_classes)
+        if extra_features > 0:
+            self.net1 = nn.Sequential(
+                nn.Linear(extra_features, features_fc[0]), nn.ReLU(),
+                nn.Linear(features_fc[0], features_fc[1]), nn.ReLU(),
+            )
+            self.fc = nn.Linear(h_cnn[2] + features_fc[1], num_classes)
+        else:
+            self.net1 = None
+            self.fc = nn.Linear(h_cnn[2], num_classes)
         self.extra_features = extra_features
     def forward(self, x):
         seq_len = x.size(-1)
         x_timestamp, x_features = torch.split(x, [seq_len - self.extra_features, self.extra_features], dim=2) #(B,1,length)
-        x_timestamp = self.net(x_timestamp).squeeze(-1)
-        # x_features = x_features.squeeze(1)
-        x_features = self.net1(x_features).squeeze(1)
-        x = torch.cat((x_timestamp, x_features), dim=1)
+
+        x_timestamp = self.net(x_timestamp).squeeze(-1) # CNN
+
+        if self.extra_features > 0: # Final merging layer
+            x_features = self.net1(x_features).squeeze(1) # FC for extra features
+            x = torch.cat((x_timestamp, x_features), dim=1)
+        else:
+            x = x_timestamp
         return self.fc(x)
 
 class RNN(nn.Module):
@@ -31,46 +39,62 @@ class RNN(nn.Module):
         super().__init__()
         self.rnn1 = nn.RNN(input_size=1, hidden_size=h_rnn[0], num_layers=1, batch_first=True)
         self.rnn2 = nn.RNN(input_size=h_rnn[0], hidden_size=h_rnn[1], num_layers=1, batch_first=True)
-        self.net1 = nn.Sequential(
-            nn.Linear(extra_features, features_fc[0]), nn.ReLU(),
-            nn.Linear(features_fc[0], features_fc[1]), nn.ReLU(),
-        )
-        self.fc = nn.Linear(h_rnn[1]+features_fc[1], num_classes)
+        if extra_features > 0:
+            self.net1 = nn.Sequential(
+                nn.Linear(extra_features, features_fc[0]), nn.ReLU(),
+                nn.Linear(features_fc[0], features_fc[1]), nn.ReLU(),
+            )
+            self.fc = nn.Linear(h_rnn[1]+features_fc[1], num_classes)
+        else:
+            self.net1 = None
+            self.fc = nn.Linear(h_rnn[1], num_classes)
         self.extra_features = extra_features
     def forward(self, x):
         seq_len = x.size(-1)
         x_timestamp, x_features = torch.split(x, [seq_len - self.extra_features, self.extra_features], dim=2)
-        x_timestamp = x_timestamp.permute(0, 2, 1)
+
+        x_timestamp = x_timestamp.permute(0, 2, 1) # RNN
         x_timestamp, _ = self.rnn1(x_timestamp)
         x_timestamp, _ = self.rnn2(x_timestamp)
         x_timestamp = x_timestamp[:, -1, :]
-        x_features = self.net1(x_features).squeeze(1)
-        x = torch.cat((x_timestamp, x_features), dim=1)
-        x = self.fc(x)
-        return x
+
+        if self.extra_features > 0: # Final merging layer
+            x_features = self.net1(x_features).squeeze(1) # FC for extra features
+            x = torch.cat((x_timestamp, x_features), dim=1)
+        else:
+            x = x_timestamp
+        return self.fc(x)
 
 class LSTM(nn.Module):
     def __init__(self, num_classes=2, h_rnn = [4,16], extra_features = 0, features_fc = [32, 64]):
         super().__init__()
         self.lstm1 = nn.LSTM(input_size=1, hidden_size=h_rnn[0], num_layers=1, batch_first=True)
         self.lstm2 = nn.LSTM(input_size=h_rnn[0], hidden_size=h_rnn[1], num_layers=1, batch_first=True)
-        self.net1 = nn.Sequential(
-            nn.Linear(extra_features, features_fc[0]), nn.ReLU(),
-            nn.Linear(features_fc[0], features_fc[1]), nn.ReLU(),
-        )
-        self.fc = nn.Linear(h_rnn[1]+features_fc[1], num_classes)
+        if extra_features > 0:
+            self.net1 = nn.Sequential(
+                nn.Linear(extra_features, features_fc[0]), nn.ReLU(),
+                nn.Linear(features_fc[0], features_fc[1]), nn.ReLU(),
+            )
+            self.fc = nn.Linear(h_rnn[1]+features_fc[1], num_classes)
+        else:
+            self.net1 = None
+            self.fc = nn.Linear(h_rnn[1], num_classes)
         self.extra_features = extra_features
     def forward(self, x):
         seq_len = x.size(-1)
         x_timestamp, x_features = torch.split(x, [seq_len - self.extra_features, self.extra_features], dim=2)
-        x_timestamp = x_timestamp.permute(0, 2, 1)
+
+        x_timestamp = x_timestamp.permute(0, 2, 1) # LSTM
         x_timestamp, _ = self.lstm1(x_timestamp)
         x_timestamp, _ = self.lstm2(x_timestamp)
         x_timestamp = x_timestamp[:, -1, :]
-        x_features = self.net1(x_features).squeeze(1)
-        x = torch.cat((x_timestamp, x_features), dim=1)
-        x = self.fc(x)
-        return x
+
+        if self.extra_features > 0: # Final merging layer
+            x_features = self.net1(x_features).squeeze(1) # FC for extra features
+            x = torch.cat((x_timestamp, x_features), dim=1)
+        else:
+            x = x_timestamp
+        return self.fc(x)
 
 class MixModel1(nn.Module):
     def __init__(self, num_classes=2, h_cnn=[32, 64, 128], h_rnn=[4,16], extra_features = 0, features_fc = [32, 64] ):
@@ -83,24 +107,34 @@ class MixModel1(nn.Module):
         )
         self.lstm1 = nn.LSTM(input_size=h_cnn[2], hidden_size=h_rnn[0], num_layers=1, batch_first=True)
         self.lstm2 = nn.LSTM(input_size=h_rnn[0], hidden_size=h_rnn[1], num_layers=1, batch_first=True)
-        self.net1 = nn.Sequential(
-            nn.Linear(extra_features, features_fc[0]), nn.ReLU(),
-            nn.Linear(features_fc[0], features_fc[1]), nn.ReLU(),
-        )
-        self.fc = nn.Linear(h_rnn[1]+features_fc[1], num_classes) #[RNN output, extra features]
+
+        if extra_features > 0:
+            self.net1 = nn.Sequential(
+                nn.Linear(extra_features, features_fc[0]), nn.ReLU(),
+                nn.Linear(features_fc[0], features_fc[1]), nn.ReLU(),
+            )
+            self.fc = nn.Linear(h_rnn[1]+features_fc[1], num_classes) #[RNN output, extra features]
+        else:
+            self.net1 = None
+            self.fc = nn.Linear(h_rnn[1], num_classes)
         self.extra_features = extra_features
     def forward(self, x):
         seq_len = x.size(-1)
         x_timestamp, x_features = torch.split(x, [seq_len - self.extra_features, self.extra_features], dim=2)
-        x_timestamp = self.net(x_timestamp)
-        x_timestamp = x_timestamp.permute(0, 2, 1)
+
+        x_timestamp = self.net(x_timestamp) # CNN
+
+        x_timestamp = x_timestamp.permute(0, 2, 1) # LSTM
         x_timestamp, _ = self.lstm1(x_timestamp)
         x_timestamp, _ = self.lstm2(x_timestamp)
         x_timestamp = x_timestamp[:, -1, :]
-        x_features = self.net1(x_features).squeeze(1)
-        x = torch.cat((x_timestamp, x_features), dim=1)
-        x = self.fc(x)
-        return x
+
+        if self.extra_features > 0: # Final merging layer
+            x_features = self.net1(x_features).squeeze(1) # FC for extra features
+            x = torch.cat((x_timestamp, x_features), dim=1)
+        else:
+            x = x_timestamp
+        return self.fc(x)
 
 # class MixModel2(nn.Module):
 #     def __init__(self, num_classes=2, final=False):

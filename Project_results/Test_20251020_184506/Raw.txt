@@ -1,0 +1,111 @@
+The dataset is ptbdb
+No data augmentation applied
+No data engineering applied
+CNN 0
+CNN(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+    (10): AdaptiveAvgPool1d(output_size=1)
+  )
+  (net1): Sequential(
+    (0): Linear(in_features=0, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=72, out_features=2, bias=True)
+)
+Training CNN model 1, accuracy: 0.9002, loss: 0.2689, auc: 0.9495, time_taken: 2.6018
+------------------------------
+RNN 0
+RNN(
+  (rnn1): RNN(1, 8, batch_first=True)
+  (rnn2): RNN(8, 8, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=0, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=72, out_features=2, bias=True)
+)
+Training RNN model 1, accuracy: 0.7195, loss: 0.5935, auc: 0.4953, time_taken: 18.1473
+------------------------------
+LSTM 0
+LSTM(
+  (lstm1): LSTM(1, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=0, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=72, out_features=2, bias=True)
+)
+Training LSTM model 1, accuracy: 0.7195, loss: 0.5936, auc: 0.4470, time_taken: 8.8177
+------------------------------
+MixModel1 0
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(8, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=0, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=72, out_features=2, bias=True)
+)
+Training MixModel1 model 1, accuracy: 0.9163, loss: 0.2285, auc: 0.9570, time_taken: 4.3756
+------------------------------
+Best model is MixModel1 model 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 8, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(8, 8, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(8, 8, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(8, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(8, 8, batch_first=True)
+  (lstm2): LSTM(8, 8, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=0, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=72, out_features=2, bias=True)
+)
+Testing on train/test set
+[0.7317073170731707, 0.45310889728615594, 0.8515973892133287, 0.9072483682583304, 0.9161800068704913, 0.9223634489866025, 0.896942631398145, 0.932669185846788, 0.8972861559601512, 0.915836482308485]
+[0.5569459483288522, 0.6897113733134372, 0.34545729736493896, 0.24905683164209977, 0.2357678272825711, 0.20997720118836002, 0.25743233149136024, 0.18661767465476112, 0.2606731312396149, 0.22048145995357937]
+[0.7386431263638168, 0.883203789531899, 0.9332675094527902, 0.945865719283692, 0.9556148671800329, 0.9581278967015925, 0.9456297752369961, 0.9646210167535301, 0.9645251363065289, 0.9684216695821537]
+[0.7175190448760986, 0.605604887008667, 0.5679090023040771, 0.5679135322570801, 0.5864012241363525, 0.5477795600891113, 0.5521240234375, 0.5278284549713135, 0.5405142307281494, 0.5342535972595215]
