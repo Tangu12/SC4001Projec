@@ -1,0 +1,950 @@
+The dataset is ptbdb
+Testing with augmentation and engineering
+Using MixModel1 as the best architecture
+MixModel1 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training MixModel1 model 1, accuracy: 0.9232, loss: 0.2116, auc: 0.9601, time_taken: 8.1771
+------------------------------
+Training MixModel1 model 1, accuracy: 0.9232, loss: 0.2119, auc: 0.9605, time_taken: 8.2500
+------------------------------
+Training MixModel1 model 1, accuracy: 0.9204, loss: 0.2154, auc: 0.9617, time_taken: 8.2295
+------------------------------
+Training MixModel1 model 1, accuracy: 0.9196, loss: 0.2129, auc: 0.9618, time_taken: 8.2286
+------------------------------
+Training MixModel1 model 1, accuracy: 0.9194, loss: 0.2152, auc: 0.9600, time_taken: 8.2586
+------------------------------
+MixModel1 2
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=48, out_features=2, bias=True)
+)
+Training MixModel1 model 2, accuracy: 0.9231, loss: 0.2025, auc: 0.9650, time_taken: 8.4752
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9262, loss: 0.2025, auc: 0.9651, time_taken: 8.7681
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9254, loss: 0.2016, auc: 0.9638, time_taken: 8.7219
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9280, loss: 0.1987, auc: 0.9653, time_taken: 8.7633
+------------------------------
+Training MixModel1 model 2, accuracy: 0.9266, loss: 0.1963, auc: 0.9678, time_taken: 8.7644
+------------------------------
+MixModel1 3
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=80, out_features=2, bias=True)
+)
+Training MixModel1 model 3, accuracy: 0.9283, loss: 0.1919, auc: 0.9695, time_taken: 8.8007
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9220, loss: 0.2045, auc: 0.9660, time_taken: 8.8058
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9261, loss: 0.1963, auc: 0.9684, time_taken: 8.7919
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9249, loss: 0.2026, auc: 0.9666, time_taken: 8.7491
+------------------------------
+Training MixModel1 model 3, accuracy: 0.9254, loss: 0.2042, auc: 0.9654, time_taken: 8.7455
+------------------------------
+MixModel1 4
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=48, out_features=2, bias=True)
+)
+Training MixModel1 model 4, accuracy: 0.9370, loss: 0.1722, auc: 0.9744, time_taken: 9.7910
+------------------------------
+Training MixModel1 model 4, accuracy: 0.9325, loss: 0.1800, auc: 0.9725, time_taken: 9.7940
+------------------------------
+Training MixModel1 model 4, accuracy: 0.9301, loss: 0.1870, auc: 0.9702, time_taken: 9.8022
+------------------------------
+Training MixModel1 model 4, accuracy: 0.9319, loss: 0.1840, auc: 0.9715, time_taken: 9.8296
+------------------------------
+Training MixModel1 model 4, accuracy: 0.9321, loss: 0.1816, auc: 0.9719, time_taken: 9.8244
+------------------------------
+MixModel1 5
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=64, out_features=2, bias=True)
+)
+Training MixModel1 model 5, accuracy: 0.9384, loss: 0.1641, auc: 0.9774, time_taken: 9.8412
+------------------------------
+Training MixModel1 model 5, accuracy: 0.9350, loss: 0.1724, auc: 0.9751, time_taken: 9.8561
+------------------------------
+Training MixModel1 model 5, accuracy: 0.9354, loss: 0.1645, auc: 0.9790, time_taken: 9.8127
+------------------------------
+Training MixModel1 model 5, accuracy: 0.9345, loss: 0.1719, auc: 0.9751, time_taken: 9.7982
+------------------------------
+Training MixModel1 model 5, accuracy: 0.9285, loss: 0.1840, auc: 0.9737, time_taken: 9.7829
+------------------------------
+MixModel1 6
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=96, out_features=2, bias=True)
+)
+Training MixModel1 model 6, accuracy: 0.9334, loss: 0.1769, auc: 0.9737, time_taken: 9.8749
+------------------------------
+Training MixModel1 model 6, accuracy: 0.9340, loss: 0.1772, auc: 0.9742, time_taken: 9.8587
+------------------------------
+Training MixModel1 model 6, accuracy: 0.9394, loss: 0.1628, auc: 0.9784, time_taken: 9.9527
+------------------------------
+Training MixModel1 model 6, accuracy: 0.9302, loss: 0.1809, auc: 0.9747, time_taken: 9.9827
+------------------------------
+Training MixModel1 model 6, accuracy: 0.9336, loss: 0.1765, auc: 0.9752, time_taken: 9.9708
+------------------------------
+MixModel1 7
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=80, out_features=2, bias=True)
+)
+Training MixModel1 model 7, accuracy: 0.9382, loss: 0.1652, auc: 0.9771, time_taken: 13.2238
+------------------------------
+Training MixModel1 model 7, accuracy: 0.9362, loss: 0.1720, auc: 0.9754, time_taken: 13.2365
+------------------------------
+Training MixModel1 model 7, accuracy: 0.9361, loss: 0.1713, auc: 0.9750, time_taken: 13.2125
+------------------------------
+Training MixModel1 model 7, accuracy: 0.9378, loss: 0.1683, auc: 0.9758, time_taken: 13.2482
+------------------------------
+Training MixModel1 model 7, accuracy: 0.9345, loss: 0.1704, auc: 0.9759, time_taken: 13.2532
+------------------------------
+MixModel1 8
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=96, out_features=2, bias=True)
+)
+Training MixModel1 model 8, accuracy: 0.9368, loss: 0.1709, auc: 0.9774, time_taken: 13.2581
+------------------------------
+Training MixModel1 model 8, accuracy: 0.9360, loss: 0.1648, auc: 0.9774, time_taken: 13.2501
+------------------------------
+Training MixModel1 model 8, accuracy: 0.9316, loss: 0.1752, auc: 0.9767, time_taken: 13.2429
+------------------------------
+Training MixModel1 model 8, accuracy: 0.9311, loss: 0.1760, auc: 0.9751, time_taken: 13.2205
+------------------------------
+Training MixModel1 model 8, accuracy: 0.9370, loss: 0.1646, auc: 0.9772, time_taken: 13.2253
+------------------------------
+MixModel1 9
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 16, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(16, 16, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(16, 16, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(16, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=128, out_features=2, bias=True)
+)
+Training MixModel1 model 9, accuracy: 0.9333, loss: 0.1785, auc: 0.9728, time_taken: 13.2487
+------------------------------
+Training MixModel1 model 9, accuracy: 0.9317, loss: 0.1783, auc: 0.9737, time_taken: 13.2370
+------------------------------
+Training MixModel1 model 9, accuracy: 0.9335, loss: 0.1795, auc: 0.9732, time_taken: 13.2426
+------------------------------
+Training MixModel1 model 9, accuracy: 0.9294, loss: 0.1873, auc: 0.9735, time_taken: 13.2754
+------------------------------
+Training MixModel1 model 9, accuracy: 0.9274, loss: 0.1840, auc: 0.9726, time_taken: 13.2752
+------------------------------
+MixModel1 10
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training MixModel1 model 10, accuracy: 0.9430, loss: 0.1613, auc: 0.9751, time_taken: 11.4405
+------------------------------
+Training MixModel1 model 10, accuracy: 0.9399, loss: 0.1677, auc: 0.9742, time_taken: 11.3932
+------------------------------
+Training MixModel1 model 10, accuracy: 0.9423, loss: 0.1671, auc: 0.9738, time_taken: 11.4384
+------------------------------
+Training MixModel1 model 10, accuracy: 0.9386, loss: 0.1752, auc: 0.9709, time_taken: 11.3688
+------------------------------
+Training MixModel1 model 10, accuracy: 0.9391, loss: 0.1697, auc: 0.9744, time_taken: 11.4726
+------------------------------
+MixModel1 11
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=48, out_features=2, bias=True)
+)
+Training MixModel1 model 11, accuracy: 0.9386, loss: 0.1754, auc: 0.9722, time_taken: 11.4787
+------------------------------
+Training MixModel1 model 11, accuracy: 0.9424, loss: 0.1600, auc: 0.9763, time_taken: 11.5213
+------------------------------
+Training MixModel1 model 11, accuracy: 0.9360, loss: 0.1769, auc: 0.9712, time_taken: 11.5848
+------------------------------
+Training MixModel1 model 11, accuracy: 0.9404, loss: 0.1711, auc: 0.9728, time_taken: 11.4967
+------------------------------
+Training MixModel1 model 11, accuracy: 0.9388, loss: 0.1685, auc: 0.9747, time_taken: 11.5545
+------------------------------
+MixModel1 12
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=80, out_features=2, bias=True)
+)
+Training MixModel1 model 12, accuracy: 0.9464, loss: 0.1543, auc: 0.9781, time_taken: 11.5313
+------------------------------
+Training MixModel1 model 12, accuracy: 0.9403, loss: 0.1667, auc: 0.9754, time_taken: 11.5461
+------------------------------
+Training MixModel1 model 12, accuracy: 0.9387, loss: 0.1709, auc: 0.9747, time_taken: 11.5460
+------------------------------
+Training MixModel1 model 12, accuracy: 0.9433, loss: 0.1628, auc: 0.9748, time_taken: 11.8144
+------------------------------
+Training MixModel1 model 12, accuracy: 0.9438, loss: 0.1544, auc: 0.9783, time_taken: 11.8321
+------------------------------
+MixModel1 13
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=48, out_features=2, bias=True)
+)
+Training MixModel1 model 13, accuracy: 0.9471, loss: 0.1445, auc: 0.9813, time_taken: 13.0436
+------------------------------
+Training MixModel1 model 13, accuracy: 0.9410, loss: 0.1634, auc: 0.9766, time_taken: 13.0523
+------------------------------
+Training MixModel1 model 13, accuracy: 0.9399, loss: 0.1627, auc: 0.9764, time_taken: 13.0691
+------------------------------
+Training MixModel1 model 13, accuracy: 0.9442, loss: 0.1523, auc: 0.9796, time_taken: 13.0234
+------------------------------
+Training MixModel1 model 13, accuracy: 0.9397, loss: 0.1661, auc: 0.9760, time_taken: 13.0099
+------------------------------
+MixModel1 14
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=64, out_features=2, bias=True)
+)
+Training MixModel1 model 14, accuracy: 0.9433, loss: 0.1522, auc: 0.9811, time_taken: 13.0322
+------------------------------
+Training MixModel1 model 14, accuracy: 0.9422, loss: 0.1528, auc: 0.9804, time_taken: 12.9845
+------------------------------
+Training MixModel1 model 14, accuracy: 0.9408, loss: 0.1571, auc: 0.9784, time_taken: 13.1779
+------------------------------
+Training MixModel1 model 14, accuracy: 0.9445, loss: 0.1515, auc: 0.9815, time_taken: 13.2549
+------------------------------
+Training MixModel1 model 14, accuracy: 0.9429, loss: 0.1566, auc: 0.9791, time_taken: 13.1398
+------------------------------
+MixModel1 15
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=96, out_features=2, bias=True)
+)
+Training MixModel1 model 15, accuracy: 0.9444, loss: 0.1545, auc: 0.9785, time_taken: 13.2113
+------------------------------
+Training MixModel1 model 15, accuracy: 0.9405, loss: 0.1643, auc: 0.9766, time_taken: 13.2036
+------------------------------
+Training MixModel1 model 15, accuracy: 0.9476, loss: 0.1462, auc: 0.9801, time_taken: 13.1091
+------------------------------
+Training MixModel1 model 15, accuracy: 0.9424, loss: 0.1601, auc: 0.9782, time_taken: 13.1089
+------------------------------
+Training MixModel1 model 15, accuracy: 0.9455, loss: 0.1525, auc: 0.9792, time_taken: 13.0872
+------------------------------
+MixModel1 16
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=80, out_features=2, bias=True)
+)
+Training MixModel1 model 16, accuracy: 0.9498, loss: 0.1369, auc: 0.9843, time_taken: 16.4812
+------------------------------
+Training MixModel1 model 16, accuracy: 0.9469, loss: 0.1486, auc: 0.9800, time_taken: 16.5148
+------------------------------
+Training MixModel1 model 16, accuracy: 0.9498, loss: 0.1389, auc: 0.9821, time_taken: 16.5569
+------------------------------
+Training MixModel1 model 16, accuracy: 0.9470, loss: 0.1483, auc: 0.9808, time_taken: 16.5656
+------------------------------
+Training MixModel1 model 16, accuracy: 0.9467, loss: 0.1445, auc: 0.9817, time_taken: 16.5920
+------------------------------
+MixModel1 17
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=96, out_features=2, bias=True)
+)
+Training MixModel1 model 17, accuracy: 0.9500, loss: 0.1405, auc: 0.9833, time_taken: 16.5417
+------------------------------
+Training MixModel1 model 17, accuracy: 0.9454, loss: 0.1489, auc: 0.9830, time_taken: 16.5842
+------------------------------
+Training MixModel1 model 17, accuracy: 0.9503, loss: 0.1368, auc: 0.9856, time_taken: 16.6003
+------------------------------
+Training MixModel1 model 17, accuracy: 0.9476, loss: 0.1440, auc: 0.9816, time_taken: 16.5462
+------------------------------
+Training MixModel1 model 17, accuracy: 0.9491, loss: 0.1413, auc: 0.9822, time_taken: 16.5392
+------------------------------
+MixModel1 18
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 32, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(32, 32, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(32, 32, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(32, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=128, out_features=2, bias=True)
+)
+Training MixModel1 model 18, accuracy: 0.9462, loss: 0.1472, auc: 0.9820, time_taken: 16.6065
+------------------------------
+Training MixModel1 model 18, accuracy: 0.9471, loss: 0.1492, auc: 0.9804, time_taken: 16.6379
+------------------------------
+Training MixModel1 model 18, accuracy: 0.9449, loss: 0.1521, auc: 0.9822, time_taken: 16.6617
+------------------------------
+Training MixModel1 model 18, accuracy: 0.9460, loss: 0.1504, auc: 0.9811, time_taken: 16.6020
+------------------------------
+Training MixModel1 model 18, accuracy: 0.9444, loss: 0.1503, auc: 0.9812, time_taken: 16.6502
+------------------------------
+MixModel1 19
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=32, out_features=2, bias=True)
+)
+Training MixModel1 model 19, accuracy: 0.9467, loss: 0.1459, auc: 0.9820, time_taken: 19.8287
+------------------------------
+Training MixModel1 model 19, accuracy: 0.9478, loss: 0.1536, auc: 0.9775, time_taken: 19.6288
+------------------------------
+Training MixModel1 model 19, accuracy: 0.9489, loss: 0.1462, auc: 0.9799, time_taken: 19.5373
+------------------------------
+Training MixModel1 model 19, accuracy: 0.9488, loss: 0.1477, auc: 0.9788, time_taken: 19.5452
+------------------------------
+Training MixModel1 model 19, accuracy: 0.9448, loss: 0.1558, auc: 0.9769, time_taken: 19.6140
+------------------------------
+MixModel1 20
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=48, out_features=2, bias=True)
+)
+Training MixModel1 model 20, accuracy: 0.9483, loss: 0.1523, auc: 0.9772, time_taken: 19.6417
+------------------------------
+Training MixModel1 model 20, accuracy: 0.9483, loss: 0.1452, auc: 0.9809, time_taken: 19.6273
+------------------------------
+Training MixModel1 model 20, accuracy: 0.9457, loss: 0.1534, auc: 0.9779, time_taken: 19.6227
+------------------------------
+Training MixModel1 model 20, accuracy: 0.9442, loss: 0.1593, auc: 0.9784, time_taken: 19.6060
+------------------------------
+Training MixModel1 model 20, accuracy: 0.9448, loss: 0.1566, auc: 0.9780, time_taken: 19.6791
+------------------------------
+MixModel1 21
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 16, batch_first=True)
+  (lstm2): LSTM(16, 16, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=80, out_features=2, bias=True)
+)
+Training MixModel1 model 21, accuracy: 0.9449, loss: 0.1555, auc: 0.9779, time_taken: 19.6460
+------------------------------
+Training MixModel1 model 21, accuracy: 0.9433, loss: 0.1627, auc: 0.9762, time_taken: 19.6318
+------------------------------
+Training MixModel1 model 21, accuracy: 0.9470, loss: 0.1487, auc: 0.9798, time_taken: 19.6539
+------------------------------
+Training MixModel1 model 21, accuracy: 0.9499, loss: 0.1450, auc: 0.9803, time_taken: 19.6713
+------------------------------
+Training MixModel1 model 21, accuracy: 0.9428, loss: 0.1584, auc: 0.9784, time_taken: 20.4179
+------------------------------
+MixModel1 22
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=48, out_features=2, bias=True)
+)
+Training MixModel1 model 22, accuracy: 0.9541, loss: 0.1293, auc: 0.9852, time_taken: 21.5866
+------------------------------
+Training MixModel1 model 22, accuracy: 0.9559, loss: 0.1244, auc: 0.9853, time_taken: 21.6124
+------------------------------
+Training MixModel1 model 22, accuracy: 0.9568, loss: 0.1230, auc: 0.9864, time_taken: 21.5365
+------------------------------
+Training MixModel1 model 22, accuracy: 0.9546, loss: 0.1340, auc: 0.9843, time_taken: 21.4946
+------------------------------
+Training MixModel1 model 22, accuracy: 0.9539, loss: 0.1358, auc: 0.9827, time_taken: 21.5863
+------------------------------
+MixModel1 23
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=64, out_features=2, bias=True)
+)
+Training MixModel1 model 23, accuracy: 0.9535, loss: 0.1334, auc: 0.9834, time_taken: 21.6092
+------------------------------
+Training MixModel1 model 23, accuracy: 0.9551, loss: 0.1300, auc: 0.9834, time_taken: 21.5107
+------------------------------
+Training MixModel1 model 23, accuracy: 0.9523, loss: 0.1332, auc: 0.9839, time_taken: 21.4782
+------------------------------
+Training MixModel1 model 23, accuracy: 0.9500, loss: 0.1439, auc: 0.9801, time_taken: 21.4793
+------------------------------
+Training MixModel1 model 23, accuracy: 0.9516, loss: 0.1395, auc: 0.9814, time_taken: 21.4948
+------------------------------
+MixModel1 24
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 32, batch_first=True)
+  (lstm2): LSTM(32, 32, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=96, out_features=2, bias=True)
+)
+Training MixModel1 model 24, accuracy: 0.9569, loss: 0.1280, auc: 0.9846, time_taken: 21.6218
+------------------------------
+Training MixModel1 model 24, accuracy: 0.9527, loss: 0.1344, auc: 0.9835, time_taken: 21.6350
+------------------------------
+Training MixModel1 model 24, accuracy: 0.9511, loss: 0.1381, auc: 0.9846, time_taken: 21.5984
+------------------------------
+Training MixModel1 model 24, accuracy: 0.9531, loss: 0.1329, auc: 0.9829, time_taken: 20.5397
+------------------------------
+Training MixModel1 model 24, accuracy: 0.9520, loss: 0.1347, auc: 0.9821, time_taken: 20.4366
+------------------------------
+MixModel1 25
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=16, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=16, out_features=16, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=80, out_features=2, bias=True)
+)
+Training MixModel1 model 25, accuracy: 0.9599, loss: 0.1107, auc: 0.9896, time_taken: 24.0184
+------------------------------
+Training MixModel1 model 25, accuracy: 0.9635, loss: 0.1013, auc: 0.9912, time_taken: 23.9618
+------------------------------
+Training MixModel1 model 25, accuracy: 0.9624, loss: 0.1049, auc: 0.9901, time_taken: 23.9118
+------------------------------
+Training MixModel1 model 25, accuracy: 0.9592, loss: 0.1149, auc: 0.9899, time_taken: 23.9289
+------------------------------
+Training MixModel1 model 25, accuracy: 0.9584, loss: 0.1149, auc: 0.9879, time_taken: 24.0339
+------------------------------
+MixModel1 26
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=96, out_features=2, bias=True)
+)
+Training MixModel1 model 26, accuracy: 0.9592, loss: 0.1180, auc: 0.9876, time_taken: 24.1278
+------------------------------
+Training MixModel1 model 26, accuracy: 0.9616, loss: 0.1078, auc: 0.9892, time_taken: 24.1865
+------------------------------
+Training MixModel1 model 26, accuracy: 0.9613, loss: 0.1060, auc: 0.9900, time_taken: 24.0391
+------------------------------
+Training MixModel1 model 26, accuracy: 0.9616, loss: 0.1097, auc: 0.9889, time_taken: 23.9661
+------------------------------
+Training MixModel1 model 26, accuracy: 0.9626, loss: 0.1051, auc: 0.9898, time_taken: 23.8989
+------------------------------
+MixModel1 27
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=64, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=64, out_features=64, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=128, out_features=2, bias=True)
+)
+Training MixModel1 model 27, accuracy: 0.9590, loss: 0.1159, auc: 0.9880, time_taken: 24.3275
+------------------------------
+Training MixModel1 model 27, accuracy: 0.9568, loss: 0.1236, auc: 0.9870, time_taken: 24.1847
+------------------------------
+Training MixModel1 model 27, accuracy: 0.9550, loss: 0.1271, auc: 0.9864, time_taken: 24.1650
+------------------------------
+Training MixModel1 model 27, accuracy: 0.9558, loss: 0.1267, auc: 0.9868, time_taken: 24.2733
+------------------------------
+Training MixModel1 model 27, accuracy: 0.9552, loss: 0.1291, auc: 0.9849, time_taken: 24.2029
+------------------------------
+Best model is MixModel1 model 26
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 64, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(64, 64, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(64, 64, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(64, 64, batch_first=True)
+  (lstm2): LSTM(64, 64, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=32, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=32, out_features=32, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=96, out_features=2, bias=True)
+)
+Testing on train/test set
+[0.7978010651090878, 0.8787149974231232, 0.8945198419515548, 0.9305961175055832, 0.9245834049132452, 0.949149630647655, 0.9587699707953959, 0.9561930939701082, 0.9682185191547844, 0.9709671877684247]
+[0.4148681500260721, 0.2854789771834634, 0.2512098610288518, 0.19134229910555953, 0.19309241699816088, 0.1444864391620125, 0.1284047469222818, 0.1217113900862492, 0.09800473105157902, 0.09683331293741097]
+[0.8846941729116533, 0.947622863785613, 0.9641325048896328, 0.9704140380240253, 0.9760350367025186, 0.981000534263319, 0.983113806840613, 0.9873969588132877, 0.9894434120022211, 0.9910085613435541]
+[3.0232882499694824, 3.016329288482666, 3.0202767848968506, 2.9995322227478027, 3.011510133743286, 3.0100154876708984, 3.0353755950927734, 3.014012575149536, 3.0048580169677734, 3.008898973464966]

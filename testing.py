@@ -122,12 +122,23 @@ def test_model(model, train_dl, test_dl, epochs = 10, validation = False, by_AUC
     if best_state is not None:
         model.load_state_dict(best_state)
 
+    # Inference time
+    model.eval()
+    data = iter(test_dl)
+    xb, yb = next(data)
+    xb, yb = xb.to(device), yb.to(device)
+    with torch.no_grad():
+        start_time = time.time()
+        outputs = model(xb)
+        end_time = time.time()
+    inference_time = (end_time - start_time)/xb.size(0)
+
     metrics.append(total_time_taken) # We are returning the best metrics + the total time taken to run all epochs
 
     if list_data:
         return data_dict
 
-    return best_test_metric, metrics
+    return best_test_metric, metrics, inference_time
 
 def kFold_validation(model, x_train, y_train, epochs = 10, fold = 5, by_AUC = False):
     skf = StratifiedKFold(n_splits=fold, shuffle=True, random_state=42)
@@ -136,6 +147,7 @@ def kFold_validation(model, x_train, y_train, epochs = 10, fold = 5, by_AUC = Fa
 
     test_metric = 0
     fold_metrics = [0, 0, 0, 0]
+    inference_time = 0
     for train_idx, val_idx in skf.split(x_train, y_train):
 
         train_x, train_y = x_train[train_idx].copy(), y_train[train_idx].copy()
@@ -157,12 +169,13 @@ def kFold_validation(model, x_train, y_train, epochs = 10, fold = 5, by_AUC = Fa
         model.load_state_dict(init_parameters) # Reset the model before every test
         model.to(device)
 
-        best_test_metric, new_metric = test_model(model, train_loader, val_loader, epochs, validation=True, by_AUC=by_AUC)
+        best_test_metric, new_metric, inference_time = test_model(model, train_loader, val_loader, epochs, validation=True, by_AUC=by_AUC)
 
         test_metric += best_test_metric # Adds whatever metric is used for comparing
         fold_metrics = [x + y for x,y in zip(fold_metrics, new_metric)] # Adds the accuracy, loss, AUC_score of the best_model (chosen accuracy if by_AUC is false otherwise by AUC score)
+        inference_time += inference_time # Adds up all the inference time to be averaged
 
-    return test_metric/fold, [i/fold for i in fold_metrics] # Returns accuracy, loss, AUC_score averaged over the k folds
+    return test_metric/fold, [i/fold for i in fold_metrics], inference_time/fold # Returns accuracy, loss, AUC_score averaged over the k folds
 
 
 

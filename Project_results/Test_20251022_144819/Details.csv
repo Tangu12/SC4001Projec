@@ -1,0 +1,27 @@
+The dataset is ptbdb
+Testing with augmentation and engineering
+Using MixModel1 as the best architecture
+MixModel1 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 2, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(2, 2, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(2, 2, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(2, 2, batch_first=True)
+  (lstm2): LSTM(2, 2, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=2, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=2, out_features=2, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=4, out_features=2, bias=True)
+)
