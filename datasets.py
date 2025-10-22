@@ -114,8 +114,8 @@ def get_mitbih_dataset(d_aug: Optional[List[data_aug]] = None, d_eng: Optional[L
     df_train = pd.read_csv("ECG_heartbeats/mitbih/mitbih_train.csv", header=None)
     df_test = pd.read_csv("ECG_heartbeats/mitbih/mitbih_test.csv", header=None)
 
-    df_train_1 = data_manipulation(df_train, d_eng)
-    df_test = data_manipulation(df_test, d_eng)
+    df_train_1 = data_manipulation(df_train, d_eng = d_eng)
+    df_test = data_manipulation(df_test, d_eng = d_eng)
 
     if d_aug is not None:
         df_train_2 = data_manipulation(df_train, d_aug, d_eng)
@@ -123,7 +123,6 @@ def get_mitbih_dataset(d_aug: Optional[List[data_aug]] = None, d_eng: Optional[L
 
     df_train = df_train.to_numpy().copy()
     df_test = df_test.to_numpy().copy()
-
     # preprocess_pipeline = Pipeline([
     #     ('scaler', StandardScaler()),
     # ])

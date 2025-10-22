@@ -74,7 +74,7 @@ test_fold_ds = TensorDataset(torch.from_numpy(scaled_x_test).float(), torch.from
 train_loader = DataLoader(train_fold_ds, batch_size=128, shuffle=True)
 test_loader = DataLoader(test_fold_ds, batch_size=128, shuffle=False)
 
-test_model(CNN(), train_loader, test_loader, epochs=1, validation=False, list_data=True)
+test_model(CNN(num_classes=classes), train_loader, test_loader, epochs=1, validation=False, list_data=True)
 
 seeds = [10, 20, 30, 40, 50] # Add more seed to test models on different seed for averaging
 
@@ -116,7 +116,7 @@ models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[32, 32, 32] ,h_
 # Write down each model details into the file
 for key,value in models.items():
     for i, model in enumerate(value):
-        log.write([f"{key} {i}", model], fileType="det")
+        log.write([f"{key} {i+1}", model], fileType="det")
 
 # Used for grid search
 best_metric = 0
@@ -133,7 +133,7 @@ for key,value in models.items():
 
         total_metric = 0
 
-        log.write([f"{key} {i}", model], fileType="raw")
+        log.write([f"{key} {i+1}", model], fileType="raw")
 
         l_acc, l_loss, l_auc, l_time_taken = [], [], [], []
         for seed in seeds: # Average over 5 runs
@@ -141,7 +141,7 @@ for key,value in models.items():
 
             model_1 = copy.deepcopy(model)
 
-            metric, (accuracy, loss, auc_score, time_taken) = kFold_validation(model_1, x_train, y_train, epochs = global_epoch, fold = 5, by_AUC=by_AUC)
+            metric, (accuracy, loss, auc_score, time_taken), _ = kFold_validation(model_1, x_train, y_train, epochs = global_epoch, fold = 5, by_AUC=by_AUC)
 
             total_metric += metric
 
@@ -161,7 +161,7 @@ for key,value in models.items():
         avg_loss = sum(l_loss) / len(l_loss)
         avg_auc = sum(l_auc) / len(l_auc)
         avg_time_taken = sum(l_time_taken) / len(l_time_taken) # Average per seed
-        log.write([f"{key} {i}", "acc"] + l_acc + [avg_acc], fileType="comp")
+        log.write([f"{key} {i+1}", "acc"] + l_acc + [avg_acc], fileType="comp")
         log.write([f"", "loss"] + l_loss + [avg_loss], fileType="comp")
         log.write([f"", "auc"] + l_auc + [avg_auc], fileType="comp")
         log.write([f"", "time_taken"] + l_time_taken + [avg_time_taken], fileType="comp")
@@ -252,7 +252,7 @@ models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[32, 32, 32] ,h_
 # Write down each model details into the file
 for key,value in models.items():
     for i, model in enumerate(value):
-        log.write([f"{key} {i}", model], fileType="det")
+        log.write([f"{key} {i+1}", model], fileType="det")
 
 # Used for grid search
 best_metric = 0
@@ -269,7 +269,7 @@ for key,value in models.items():
 
         total_metric = 0
 
-        log.write([f"{key} {i}", model], fileType="raw")
+        log.write([f"{key} {i+1}", model], fileType="raw")
 
         l_acc, l_loss, l_auc, l_time_taken = [], [], [], []
         for seed in seeds: # Average over 5 runs
@@ -297,7 +297,7 @@ for key,value in models.items():
         avg_loss = sum(l_loss) / len(l_loss)
         avg_auc = sum(l_auc) / len(l_auc)
         avg_time_taken = sum(l_time_taken) / len(l_time_taken) # Average per seed
-        log.write([f"{key} {i}", "acc"] + l_acc + [avg_acc], fileType="comp")
+        log.write([f"{key} {i+1}", "acc"] + l_acc + [avg_acc], fileType="comp")
         log.write([f"", "loss"] + l_loss + [avg_loss], fileType="comp")
         log.write([f"", "auc"] + l_auc + [avg_auc], fileType="comp")
         log.write([f"", "time_taken"] + l_time_taken + [avg_time_taken], fileType="comp")
@@ -404,7 +404,7 @@ models["MixModel1"].append(MixModel1(num_classes=classes, h_cnn=[32, 32, 32] ,h_
 # Write down each model details into the file
 for key,value in models.items():
     for i, model in enumerate(value):
-        log.write([f"{key} {i}", model], fileType="det")
+        log.write([f"{key} {i+1}", model], fileType="det")
 
 # Used for grid search
 best_metric = 0
@@ -449,7 +449,7 @@ for key,value in models.items():
         avg_loss = sum(l_loss) / len(l_loss)
         avg_auc = sum(l_auc) / len(l_auc)
         avg_time_taken = sum(l_time_taken) / len(l_time_taken) # Average per seed
-        log.write([f"{key} {i}", "acc"] + l_acc + [avg_acc], fileType="comp")
+        log.write([f"{key} {i+1}", "acc"] + l_acc + [avg_acc], fileType="comp")
         log.write([f"", "loss"] + l_loss + [avg_loss], fileType="comp")
         log.write([f"", "auc"] + l_auc + [avg_auc], fileType="comp")
         log.write([f"", "time_taken"] + l_time_taken + [avg_time_taken], fileType="comp")

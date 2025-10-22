@@ -1,0 +1,66 @@
+The dataset is ptbdb
+Testing with augmentation and engineering
+Using MixModel1 as the best architecture
+MixModel1 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 2, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(2, 2, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(2, 2, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(2, 2, batch_first=True)
+  (lstm2): LSTM(2, 2, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=2, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=2, out_features=2, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=4, out_features=2, bias=True)
+)
+Training MixModel1 model 1, accuracy: 0.7573, loss: 0.4886, auc: 0.7804, time_taken: 6.3043
+------------------------------
+Training MixModel1 model 1, accuracy: 0.7558, loss: 0.4905, auc: 0.7779, time_taken: 6.2959
+------------------------------
+Training MixModel1 model 1, accuracy: 0.7579, loss: 0.4899, auc: 0.7800, time_taken: 7.0794
+------------------------------
+Training MixModel1 model 1, accuracy: 0.7579, loss: 0.4938, auc: 0.7735, time_taken: 7.1756
+------------------------------
+Training MixModel1 model 1, accuracy: 0.7592, loss: 0.4892, auc: 0.7796, time_taken: 7.2961
+------------------------------
+Best model is MixModel1 model 1
+MixModel1(
+  (net): Sequential(
+    (0): Conv1d(1, 2, kernel_size=(7,), stride=(1,), padding=(3,))
+    (1): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (2): ReLU()
+    (3): Conv1d(2, 2, kernel_size=(5,), stride=(2,), padding=(2,))
+    (4): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (5): ReLU()
+    (6): Conv1d(2, 2, kernel_size=(3,), stride=(2,), padding=(1,))
+    (7): BatchNorm1d(2, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+    (8): ReLU()
+    (9): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=True)
+  )
+  (lstm1): LSTM(2, 2, batch_first=True)
+  (lstm2): LSTM(2, 2, batch_first=True)
+  (net1): Sequential(
+    (0): Linear(in_features=7, out_features=2, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=2, out_features=2, bias=True)
+    (3): ReLU()
+  )
+  (fc): Linear(in_features=4, out_features=2, bias=True)
+)
+Testing on train/test set
+[0.718433258890225, 0.7179178835251675, 0.7290843497680811, 0.733035560900189, 0.7467789039683903, 0.748325030063563, 0.7512454904655558, 0.7545095344442536, 0.7625837484968219, 0.7557120769627211]
+[0.5885570894461525, 0.5553069286300563, 0.5284649696142848, 0.521213314937083, 0.5093015613803297, 0.503486916619956, 0.4967125016908592, 0.4915752029054416, 0.4886555550352771, 0.48317327094516316]
+[0.6587204116307752, 0.707326993953283, 0.7302778490226133, 0.7441580450689479, 0.7578274974329975, 0.7652571423069146, 0.7738111182210052, 0.7804465898623025, 0.7841090364031444, 0.7900700407248122]
+[1.02809476852417, 1.6249048709869385, 0.9449272155761719, 0.8985912799835205, 0.8698265552520752, 1.0263683795928955, 0.9138650894165039, 0.8920857906341553, 0.904761791229248, 1.0778727531433105]
