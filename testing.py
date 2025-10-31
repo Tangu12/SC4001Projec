@@ -91,6 +91,7 @@ def test_model(model, train_dl, test_dl, epochs = 10, validation = False, by_AUC
             loss = criterion(logits, yb)
             optimizer.zero_grad()
             loss.backward()
+            nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
             optimizer.step()
 
         test_loss, test_acc, output, labels = evaluate(model, test_dl, criterion, return_probs=True)
